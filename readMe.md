@@ -2,4 +2,4 @@
 ### 访问地址
 - github : https://github.com/nowLetsgo/SuperStar0924.git
 
-- gitee : 
+- gitee : https://gitee.com/nowletsgo/super-star0924.git
