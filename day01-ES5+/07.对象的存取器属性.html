@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var person = {
+            firstName: "杨",
+            lastName: "nie",
+
+            //在普通创建对象初始化的时候添加存取器属性
+            /* get fullName() {
+                return this.firstName + " " + this.lastName
+            },
+            set fullName(value) {
+                //setter函数的参数就是存的时候 给的新值
+                this.firstName = value.split(" ")[0];
+                this.lastName = value.split(" ")[1];
+            } */
+        }
+
+        //使用defineProperty扩展一个存取器属性
+        Object.defineProperty(person, "fullName", {
+            //getter函数 取的属性
+            get() {
+                return this.firstName + " " + this.lastName
+            },
+            set(value) {
+                //setter函数的参数就是存的时候 给的新值
+                this.firstName = value.split(" ")[0];
+                this.lastName = value.split(" ")[1];
+            },
+        })
+
+
+
+        //获取
+        console.log(person.fullName);
+        //设置
+        person.fullName = "小 nienie";
+        console.log("设置后的对象", person);
+    </script>
+</body>
+
+</html>

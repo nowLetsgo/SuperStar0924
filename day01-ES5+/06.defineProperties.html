@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Object.defineProperties方法：
+                - 给一个对象（无论对象是怎么创建出来的）扩展一个或多个属性或方法，并且可以设置属性描述
+                - 参数1：被扩展属性的对象
+                - 参数2：属性及属性的描述（类似于create方法的第二个参数）
+        
+        */
+        // var obj1 = Object.create(null, {})
+        var obj1 = {}
+
+        Object.defineProperties(obj1, {
+            name: {
+                value: "laoyang",
+                writable: false,
+                enumerable: false,
+                configurable: false
+            },
+            age: {
+                value: 18
+            }
+        })
+
+        //查看是否可以被修改
+        obj1.name = "laonie";
+        console.log("是否被修改", obj1);
+
+        //查看是否可以被枚举
+        for (var key in obj1) {
+            console.log("是否可以被枚举", key);
+        }
+
+        //查看是否可以被删除
+        delete obj1.name
+        console.log("是否可以被删除", obj1);
+    </script>
+</body>
+
+</html>
