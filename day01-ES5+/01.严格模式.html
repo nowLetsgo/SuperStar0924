@@ -9,7 +9,60 @@
 </head>
 
 <body>
+    <script>
+        /* 
+            什么严格模式：
+                - 尽量避免代码中的不安全的写法
+                - 为未来的js新版本规范做一个铺垫
+            严格模式怎么开启
+                - 可以在全局开启，也可以在局部开启（用函数划分）
+                - 只需要书写 'use strict' 字符串在全局或者局部的最前边即可开启
+            严格模式举例：
+                - 不能使用未初始化的变量
+                - 禁止自定义的函数中的this指向window
+                - 禁止删除变量和对象中不可删除的属性，显示报错
+                - 禁止函数参数重名，对象属性重名
 
+
+        
+         */
+
+        // 'use strict'
+
+        //不能使用未初始化的变量
+        // a = 1;
+
+
+        // 禁止自定义的函数中的this指向window
+        /* console.log(this); //window
+
+        function fn() {
+            console.log(this);
+        }
+        fn(); //undefined */
+
+
+        //删除变量,不会被删除 但是严格模式会报错
+        /* var b = 2;
+        delete b;
+        console.log(b); */
+
+        //禁止函数参数重名，对象属性重名
+        /* function fn(a, a, b) {
+
+        } */
+
+
+
+        //局部开启严格模式
+        b = 2; //在局部外并没有开启严格模式
+
+        function fn() {
+            'use strict'
+            // a = 1;
+        }
+        fn()
+    </script>
 </body>
 
 </html>
