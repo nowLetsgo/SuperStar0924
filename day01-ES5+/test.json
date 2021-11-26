@@ -1,0 +1,33 @@
+{
+    "stu": [{
+        "name": "xiaoyang",
+        "age": 18,
+        "sex": "男",
+        "girlFri": ["labuladuo", "bulabula", "helloworld"]
+    }, {
+        "name": "xiaoyang1",
+        "age": 18,
+        "sex": "男",
+        "girlFri": ["labuladuo", "bulabula", "helloworld"]
+    }, {
+        "name": "xiaoyang2",
+        "age": 18,
+        "sex": "男",
+        "girlFri": ["labuladuo", "bulabula", "helloworld"]
+    }, {
+        "name": "xiaoyang3",
+        "age": 18,
+        "sex": "男",
+        "girlFri": ["labuladuo", "bulabula", "helloworld"]
+    }, {
+        "name": "xiaoyang4",
+        "age": 18,
+        "sex": "男",
+        "girlFri": ["labuladuo", "bulabula", "helloworld"]
+    }, {
+        "name": "xiaoyang5",
+        "age": 18,
+        "sex": "男",
+        "girlFri": ["labuladuo", "bulabula", "helloworld"]
+    }]
+}

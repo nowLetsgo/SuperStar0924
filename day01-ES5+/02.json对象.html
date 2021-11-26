@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            JSON:
+                - 轻量级数据交换格式
+                - JSON.stringify():可以把json转成json字符串
+                - JSON.parse():可以把json字符串转成json对象
+
+            深拷贝可以直接使用JSON.parse和JSON.stringify来完成
+                - 因为在json中，value值只能是基本类型和数组对象，不能是函数、Date等
+                - 所以当我们使用JSON的两个方法进行转换的时候，会直接忽略value不符合条件的属性
+                - 所以使用本方法进行深拷贝是有限制的
+        */
+        var obj = {
+            name: "xiaonie",
+            age: 18,
+            sex: "男",
+            girlFir: ["小仓优子", "桥上桥下"],
+            study: function () {
+                console.log("js");
+            }
+        }
+
+        //正常情况下转字符串,将失去原有特征，不可逆
+        console.log("toString", obj.toString());
+
+        //JSON.stringify()
+        console.log("stringify", JSON.stringify(obj));
+        var objStr = JSON.stringify(obj);
+
+        //JSON.parse()
+        console.log("parse", JSON.parse(objStr));
+        var newObj = JSON.parse(objStr);
+
+
+        //深拷贝可以直接使用JSON.parse和JSON.stringify来完成
+        console.log(obj === newObj);
+        console.log(obj.girlFir === newObj.girlFir);
+    </script>
+</body>
+
+</html>
