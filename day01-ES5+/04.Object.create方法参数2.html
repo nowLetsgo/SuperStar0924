@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Object.create静态方法：
+                - 该方法创建一个对象，可以指定对象的原型和对象属性特性
+                - 参数1：新创建对象指定的__proto__属性
+                - 参数2：给新创建的对象扩展属性，及属性描述,每一个属性的值是一个对象，对象中书写当前属性的描述，描述如下
+                    - value:当前属性的值
+                    - writable:当前属性的值是否可以被修改
+                    - enumerable:当前属性是否可以被枚举出来
+                    - configurable:当前属性是否可以被删除，当前的属性描述符是否可以被修改
+
+                - 通过Object.create创建的对象，当使用普通的成员访问的方式扩展属性的话，不受描述符的影响
+
+        
+        */
+        var obj1 = Object.create(null, {
+            name: {
+                value: "老聂",
+                writable: false,
+                enumerable: false,
+                configurable: false
+            }
+        })
+        console.log("obj1", obj1);
+
+
+        obj1.age = 18; //普通的方式扩展一个属性
+
+        //是否可写
+        obj1.name = '老杨';
+        obj1.age = 19;
+        console.log("是否可写", obj1);
+
+        //是否可以枚举
+        for (var key in obj1) {
+            console.log("是否可以枚举", key);
+        }
+
+        //是否可以被删除
+        delete obj1.age;
+        delete obj1.name;
+        console.log(obj1);
+    </script>
+</body>
+
+</html>

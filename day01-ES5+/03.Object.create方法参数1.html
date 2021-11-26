@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Object.create静态方法：
+                - 该方法创建一个对象，可以指定对象的原型和对象属性特性
+                - 参数1：新创建对象指定的__proto__属性
+
+        
+        */
+
+        //新创建对象指定的__proto__属性
+        var o = {
+            do: "学习"
+        }
+        var obj1 = Object.create(o);
+        console.log('obj1', obj1);
+
+        //创建一个干净的对象
+        var obj2 = Object.create(null);
+        console.log("obj2", obj2);
+
+        //创建一个普通的对象
+        var obj3 = Object.create(Object.prototype);
+        console.log(obj3);
+    </script>
+</body>
+
+</html>
