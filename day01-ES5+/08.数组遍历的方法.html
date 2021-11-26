@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            数组遍历方法汇总:
+                - forEach:
+                    - 单纯的遍历数组，数组的值依次会进入到回调函数中
+                    - 没有返回值
+                - map
+                    - 映射数组
+                    - 返回和原数组长度一样的数组
+                    - 数组的值依次进入回调函数中，当次回调函数的返回值就是对应的映射数组位置的值
+                - some
+                    - 遍历数组的每一个值，数组的值会依次进入回调函数中执行
+                    - 如果某个回调函数返回true，则停止遍历，some方法直接返回true
+                    - 一真即真
+                - every
+                    - 遍历数组的每一个值，数组的值会依次进入回调函数中执行
+                    - 如果所有的值进入的回调函数都返回true，则every方法返回true，否则返回false,并停止遍历
+                    - 一假即假
+                - filter
+                    - 过滤，返回数组
+                    - 根据回调函数中的条件，返回所有符合条件(回调函数返回true) 的值组成的数组
+                - find
+                    - 查找 
+                    - 根据回调函数中的条件，返回第一个符合条件的值
+                - findIndex
+                    - 查找 
+                    - 根据回调函数中的条件，返回第一个符合条件的值的下标
+                - reduce
+        
+        */
+
+        var baseArr1 = ["a", "b", "c", "d"];
+
+        //map
+        var mapResult = baseArr1.map(function (item, index) {
+            return item + "1"
+        });
+        console.log("mapResult", mapResult);
+
+
+
+        var baseArr2 = [{
+            name: "xiaoyang",
+            age: 18
+        }, {
+            name: "xiaonie",
+            age: 21
+        }, {
+            name: "yangnie",
+            age: 13
+        }, {
+            name: "nienie",
+            age: 22
+        }]
+        //some
+        var someResult = baseArr2.some(function (item, index) {
+            console.log("some的index", index);
+            return item.age < 18;
+        })
+        console.log("someResult", someResult);
+
+        //every
+        var everyResult = baseArr2.every(function (item, index) {
+            return item.age > 18
+        })
+        console.log("everyResult", everyResult);
+
+
+        //filter
+        var filterResult = baseArr2.filter(function (item, index) {
+            return item.age > 20
+        })
+        console.log("filterResult", filterResult);
+
+        //find
+        var findResult = baseArr2.find(function (item, index) {
+            console.log("find执行几次？");
+            return item.age > 20
+        })
+        console.log("findResult", findResult);
+
+        //findIndex
+        var findIndexResult = baseArr2.findIndex(function (item, index) {
+            console.log("find执行几次？");
+            return item.age > 20
+        })
+        console.log("findIndexResult", findIndexResult);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            reduce:
+                - 累加
+                - 返回累加后的值（最后一次回调函数返回的值）
+                - 参数1:回调函数
+                    - 参数1：上一次回调函数的返回值（第一次是初始值）
+                    - 参数2：本次的数组元素item
+                    - 参数3：本次数组元素的下标index
+                    - 参数4：原数组的引用
+                - 参数2：累加的初始值（如果没有设置初始值，则默认数组的第一个值就是初始值）
+        
+        */
+
+        var arr = [1, 2, 3, 4, 5, 6];
+
+        //forEach求和
+        var sum = 0;
+        arr.forEach(function (item, index) {
+            sum += item
+        })
+        console.log("forEach求和", sum);
+
+
+        //reduce求和
+        var reduceResult = arr.reduce(function (prev, current, index, arr) {
+            console.log("prev,current,index,arr", prev, current, index, arr);
+            //每次应该返回当次累加后的值，用以下一次累加
+            return prev + current;
+        });
+        console.log("reduceResult", reduceResult);
+    </script>
+</body>
+
+</html>
