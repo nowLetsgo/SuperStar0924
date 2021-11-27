@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            解构赋值的应用：
+                - 把属性或者方法从一个对象中提出来
+        
+        */
+
+        //把属性或者方法从一个对象中提出来
+        const {
+            log
+        } = console;
+
+        log(1)
+
+
+
+        //函数多个返回值的获取
+        function eleWH() {
+            return {
+                width: 300,
+                height: 200
+            }
+        }
+
+        const {
+            width,
+            height
+        } = eleWH;
+
+
+        //向函数传递参数(把数组的值依次传递给函数)
+        const arr = [1, 2, 3, 4]
+
+        function fn([a, b, c, d]) {
+            console.log(a, b, c, d);
+        }
+        fn(arr)
+
+
+        //如何使用解构赋值获取数组的第一个和最后一个值？
+        const arr1 = [1, 2, 3, 4, 5, 6];
+        const {
+            0: first,
+            [arr1.length - 1]: last
+        } = arr1;
+        console.log("数组的第一个和最后一个值", first, last);
+    </script>
+</body>
+
+</html>
