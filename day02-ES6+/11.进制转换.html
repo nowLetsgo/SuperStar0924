@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            把十进制转为某个进制：toString(进制)
+        
+        
+        */
+
+        {
+            const num = 255;
+            console.log(num.toString(16));
+        }
+
+
+        //随机生成一个4位验证码（包含数字字母）
+        //思路 生成[0,35]的随机数，然后转为36进制
+        (function () {
+            function random() {
+                return Math.floor(Math.random() * 36).toString(36)
+            }
+            let verify = "";
+            for (var i = 0; i < 4; i++) {
+                verify += random();
+            }
+            console.log(verify);
+        })()
+
+
+        {
+            // 把n进制的m转为10进制 parseInt(m,n) ,其中m一定是一个字符串的格式
+            console.log(parseInt("1100", 2));
+            console.log(parseInt("ff", 16));
+            console.log(parseInt(0xff, 16)); //js在计算前一定会先把其他进制转为10进制才计算
+        }
+
+
+        {
+
+            const re = [1, 2, 3].map(parseInt);
+            //parseInt(1,0)//0进制默认为10进制
+            //parseInt(2,1)//NaN
+            //parseInt(3,2)//NaN
+            console.log(re); //[1,NaN,NaN]
+        }
+
+        {
+            // 10进制转其他进制
+            // 13转2进制：
+            //13/2得6余1   6/2得3余0  3/2得1余1  1/2得0余1   把所有的余数倒着拼接即可 1101
+
+            //其他进制转10进制
+            //2进制的1101：
+            // 1*2的3次方 + 1*2的2次方 + 0*2的1次方 + 1*2的0次方 = 13
+        }
+    </script>
+</body>
+
+</html>

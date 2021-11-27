@@ -12,10 +12,81 @@
     <script>
         /* 
             字符串需要掌握的方法：
-                includes、indexOf、lastIndexOf、match、replace、search、slice、split、substr、substring、toLowerCase、toUpperCase
+                indexOf、lastIndexOf、match、replace、search、slice、split、substr、substring、toLowerCase、toUpperCase
 
-                padEnd、padStart、repeat、trim、trimEnd、trimStart
+                padEnd、padStart、repeat、trim、trimEnd、trimStart、startsWith()、endsWith()、includes
         */
+
+        {
+            //正则的方法
+            const reg = /^1[0-9]{10}$/g;
+            const tel = '15555444455';
+            console.log(reg.test(tel))
+        }
+
+        {
+            //字符串关于正则的方法-macth:返回一个数组 把所有匹配到的值放在数组中
+            const reg1 = /[0-9]+/g;
+            const str1 = '12ab1bcsd4n556';
+            const result1 = str1.match(reg1);
+            console.log(result1)
+        }
+
+        {
+            //字符串关于正则的方法-search：检测符合正则规则的字符 第一次出现的位置
+            const reg1 = /[0-9]+/g;
+            const str1 = 'ab1bcsd4n556';
+            const result1 = str1.search(reg1);
+            console.log(result1);
+        }
+
+        {
+            //字符串关于正则的方法-replace
+            const reg = /喜欢|是/g;
+            const str = "聂聂喜欢狗狗,是男的";
+            const result = str.replace(reg, "**");
+            console.log(result);
+        }
+
+        {
+            //trim:去字符串的前后空格
+            //trimEnd:去字符串的后空格
+            //trimStart:去字符串的前空格
+            const str = "    nei nei nei yang   ";
+            console.log(str.trim());
+            console.log(str.trimEnd());
+            console.log(str.trimStart());
+
+            //去所有空格
+            const reg = /\s+/g;
+            console.log(str.replace(reg, ""));
+        }
+
+
+        {
+            //includes:判断字符串中是否包含某个字符
+            //endsWith:判断字符串末尾否包含某个字符
+            //startsWith:判断字符串开头否包含某个字符
+            const str = "hello world";
+            console.log(str.includes("ll"));
+            console.log(str.endsWith("ld"));
+            console.log(str.startsWith("h"));
+        }
+
+        {
+            //repeat:可以规定让字符串重复次数
+            const str = "聂聂 你好sao啊 ";
+            console.log(str.repeat(10));
+        }
+
+
+        {
+            // padStart:当字符串不够某个长度的时候，在前边补规定的字符
+            // padEnd:当字符串不够某个长度的时候，在后边补规定的字符
+            const str = "123456";
+            console.log(str.padStart(10, "ab"));
+            console.log(str.padEnd(10, "ab"));
+        }
     </script>
 </body>
 
