@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            用var声明的全局变量和全局函数其实就是window对象的属性和方法
+            用let声明和const声明的全局变量，和window脱离，不再是window的属性和方法
+
+            let和const声明也有声明提升，只不过被放在了全局的Script对象上
+        */
+        // debugger;
+
+        //var和function声明 在window对象上
+        var a1 = 1;
+
+        function fn1() {
+
+        }
+
+        //let和const声明 在Script上
+        let a2 = 2;
+        const a3 = 3;
+
+        console.log(window);
+
+
+
+        function inner() {
+            debugger;
+            var a = 1;
+            let b = 2;
+        }
+        inner();
+    </script>
+</body>
+
+</html>

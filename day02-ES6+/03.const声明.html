@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            const声明
+                - 用来声明常量
+                - 特点：
+                    - 不能被改变
+                    - 初始化的时候必须赋值
+                    - 有变量提升，存在暂时性死区，在声明前不可以使用
+                    - 块作用域
+                    - 不能重复声明
+                    - 如果把一个对象类型赋值给常量，则只要不改变常量的地址，既可以正常修改对象的内容
+
+            以后再声明的时候，优先const还是let?
+                - 优先使用const
+                - 当某个变量要经常发生变化，则可以使用let(for的计数器等等)
+        
+        */
+
+        //声明常量
+        const PI = 3.14;
+        console.log(PI);
+
+        //1.不能被改变
+        {
+            const a = 1;
+            // a = 2; //TypeError: Assignment to constant variable.无法给常量再次赋值
+
+        }
+
+        // 2.初始化的时候必须赋值
+        {
+            // const a; //SyntaxError: Missing initializer in const declaration
+        }
+
+        //3.暂时性死区
+        {
+            // console.log(a); //ReferenceError: Cannot access 'a' before initialization
+            const a = 1;
+        }
+
+        //4.不能重复声明
+        {
+            const a = 1;
+            // const a = 2;//SyntaxError: Identifier 'a' has already been declared
+        }
+
+        //5.常量保存的是对象地址
+        {
+            const o = {};
+            o.name = "laoyang";
+            console.log(o);
+        }
+    </script>
+</body>
+
+</html>
