@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //函数作用域案例：var声明的变量支持的是函数作用域
+        function fn() {
+            //局部变量a
+            var a = 1;
+        }
+
+        if (true) {
+            //全局变量b
+            var b = 2;
+        }
+
+
+        //块作用域案例：块作用域本身也是存在的，但是需要let或const声明的变量才能支持块作用域
+        if (true) {
+            let c = 3;
+        }
+        // console.log(c);
+
+
+        //函数声明的变量的作用域
+        function ff1() {
+            //局部函数
+            function inner1() {
+
+            }
+        }
+
+
+        // inner2();
+        //如果想在块作用域中声明函数，请使用函数表达式的写法
+        /* if (true) {
+            function inner2() {
+                console.log("inner2");
+            }
+        }
+        inner2(); */
+
+
+        if (true) {
+            let inner2 = function () {
+                console.log("inner2");
+            }
+        }
+
+    </script>
+</body>
+
+</html>
