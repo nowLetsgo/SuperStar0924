@@ -19,8 +19,12 @@
         var url = "http://www.nowletsgo.cn?user=laonie&pass=123&price=498";
         // url.split("?")[1].split("&") //["user=laonie","pass=123","price=498"]
         var result1 = url.split("?")[1].split("&").reduce(function (p, c) {
-            var temp = c.split("="); //["user","laonie"]
+            /* var temp = c.split("="); //["user","laonie"]
             p[temp[0]] = temp[1];
+            return p; */
+
+            var [key, value] = c.split("=");
+            p[key] = value;
             return p;
         }, {})
         console.log("result1", result1);

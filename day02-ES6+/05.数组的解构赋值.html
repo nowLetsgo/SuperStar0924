@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const arr = ["a1", "b1", "c1", "d1"];
+
+        //基础的解构赋值
+        {
+            const [a, b, c, d] = arr;
+            console.log("a,b,c,d完全解构:", a, b, c, d);
+        }
+
+        //解构失败
+        {
+            const [a, b, c, d, e] = arr;
+            console.log("解构失败:", e); //undefined
+        }
+
+        //不完全解构
+        {
+            const [a] = arr;
+            console.log("不完全解构：", a);
+        }
+
+        //设置默认值
+        {
+            const [a, b, c, d = "2", e = "1"] = arr;
+            console.log("默认值:", d, e); //undefined
+        }
+
+        //rest参数(收集剩余的内容组成一个数组)
+        {
+            const [a, ...rest] = arr;
+            console.log("rest参数", rest); // ['b1', 'c1', 'd1']
+        }
+
+        //多维数组的解构
+        {
+            const [a, [b, c, [d], e], f] = [1, [2, 3, [4], 5], 6];
+            console.log("多维数组解构", a, b, c, d, e, f);
+        }
+
+
+        //练习：交换两个变量的值
+        {
+            let a = 1;
+            let b = 2;
+
+            /* a = a + b;
+            b = a - b;
+            a = a - b; */
+
+            [b, a] = [a, b];
+            console.log("交换a和b的值", a, b);
+        }
+
+
+        //练习
+        {
+            // let [foo = hoo, hoo = 2] = [];
+            // console.log(foo, hoo) //ReferenceError: Cannot access 'hoo' before initialization
+        }
+
+
+        // console.log(a = b = c = 1);
+        /* for (var i = 0, j = 0; i < 5, j < 10; i++, j++) {
+            console.log(i, j);
+        } */
+    </script>
+</body>
+
+</html>

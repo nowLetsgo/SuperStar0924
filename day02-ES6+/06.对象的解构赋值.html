@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            对象的解构赋值
+        */
+
+        const o = {
+            name: "laonie",
+            age: 18,
+            sex: "男"
+        }
+
+
+        //1.基础解构
+        {
+            const {
+                name: name1,
+                age: age1,
+                sex: sex1
+            } = o;
+            console.log("基础解构", name1, age1, sex1);
+        }
+
+        //2.正常解构
+        {
+            const {
+                name,
+                age,
+                sex
+            } = o;
+            console.log("正常解构", name, age, sex);
+        }
+
+        //解构赋值设置默认值 和 不完全解构  和 解构失败
+        {
+            const {
+                name,
+                age,
+                height, //解构失败
+                weight = 120 //给默认值
+            } = o;
+            console.log("正常解构", name, age, height, weight);
+        }
+
+
+        //解构的嵌套
+        {
+            const o = {
+                name: "laonei",
+                score: {
+                    math: 80,
+                    ch: 90
+                },
+                girlFri: ["lily", "lucy", "xiaoming"]
+            }
+
+            const {
+                name,
+                score: {
+                    math,
+                    ch
+                },
+                girlFri: [girlFri1, girlFri2, girlFri3]
+            } = o
+
+            console.log("嵌套解构", name, math, ch, girlFri1, girlFri2, girlFri3);
+        }
+    </script>
+</body>
+
+</html>

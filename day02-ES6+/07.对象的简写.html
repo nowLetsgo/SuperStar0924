@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const o1 = {
+            name: "laowang",
+            age: 18,
+            do: function () {
+                console.log("xuexi");
+            }
+        }
+
+
+        /* 
+            简写1.当对象的value用一个变量保存，并且保存value的这个变量和key一致，则直接书写key即可
+
+            简写2：对象中的方法不再书写function声明
+        
+        */
+        {
+            const name = "laowang";
+            const age = 18;
+
+            /* //非简写方式
+            const o = {
+                name: name,
+                age: age,
+                do: function () {
+
+                }
+            } */
+
+            //简写方式
+            const o = {
+                name,
+                age,
+                do() {
+
+                }
+            }
+            console.log(o);
+        }
+    </script>
+</body>
+
+</html>
