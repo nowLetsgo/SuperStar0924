@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            let声明：
+                特点：
+                    - let声明的变量支持块作用域
+                    - let在用一个作用域中不允许重复声明
+                    - 块级作用域的出现， IIFE不再必要了
+                
+        
+        */
+
+
+        //let的变量是块作用域
+        /* {
+            let a = 1;
+        }
+        // console.log(a); //ReferenceError: a is not defined */
+
+
+        //2.扩作用域可以层层嵌套
+        /*  {
+             let a = 1;
+
+             {
+                 let b = 2;
+
+                 {
+                     let b = 3;
+                     console.log(a, b)
+                 }
+             }
+         } */
+
+        //3.不允许重复声明
+        /* {
+            let a = 1;
+            // let a = 2; //SyntaxError: Identifier 'a' has already been declared
+        } */
+
+
+        //4.let是有声明提升的，只不过存在暂时性死区（在这个变量被赋值之前不能被使用s）
+        /* let a = 2;
+
+        {
+            //知道自己有，但是就是不能用
+            // console.log(a); //ReferenceError: Cannot access 'a' before initialization
+            let a = 1
+        } */
+
+
+        //5.for循环小括号中的let声明
+        //圆括号之间，有一个隐藏的作用域 属于for循环代码块的父作用域
+        /* for (let i = 0; i < 5; i++) {
+            console.log(i);
+        }
+        // console.log(i); */
+
+
+        //闭包解决循环内计时器执行问题
+        /* for (var i = 0; i < 5; i++) {
+            (function (i) {
+                setTimeout(function () {
+                    console.log(i); //
+                })
+            })(i)
+        } */
+
+
+        //let解决循环内计时器执行问题
+        /* for (let i = 0; i < 5; i++) {
+            //在每次执行循环体之前，JS 引擎会把 i 在循环体的上下文中重新声明及初始化一次
+            setTimeout(function () {
+                console.log(i); //
+            })
+        } */
+
+
+
+        //练习1：
+        {
+            /* let a = [];
+            for (var i = 0; i < 10; i++) {
+                a[i] = function () {
+                    console.log(i);
+                };
+            }
+            a[6](); //10 */
+        }
+
+        // 练习2:
+        /* {
+            let a = [];
+            for (let i = 0; i < 10; i++) {
+                a[i] = function () {
+                    console.log(i);
+                };
+            }
+            console.log(a);
+            a[6](); //6
+        } */
+
+
+
+        //变量对象概念
+        /* function fn(a, b, f) {
+            var VO = {
+                a: 1,
+                b: 2,
+                // f: 3,
+                fn: fn,
+                d: fn,
+                f: fn,
+                c: undefined
+
+            }
+            console.log(f);
+            console.log(a);
+            var a = 2;
+            console.log(a);
+            var c = 6;
+            var d = 4;
+
+            function fn() {
+
+            }
+
+            function d() {
+
+            }
+
+            function f() {
+
+            }
+        }
+
+        fn(1, 2, 3) */
+    </script>
+</body>
+
+</html>
