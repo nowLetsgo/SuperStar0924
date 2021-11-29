@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Array的静态方法
+                - of、isArray、from
+        
+        */
+
+        {
+            //Array.from():把伪数组转为数组
+            const likeArr = {
+                0: "a",
+                1: "b",
+                2: "c",
+                length: 2,
+                hello: "world"
+            }
+            const re = Array.from(likeArr);
+            console.log(re);
+            console.log(re.hello); //当伪数组转数组的时候，会把多余的属性移除
+
+        }
+
+
+        {
+            // Array.of():创建一个新数组，和new Array()类似，解决了newArray只有一个number参数代表长度的问题
+            const arr = new Array(10);
+            console.log(arr);
+
+            const re = Array.of(10);
+            console.log(re); //[10]
+        }
+
+
+        {
+            // Array.isArray(): 判断一个值是不是数组
+            const arr = [1, 2, 3];
+            const re = Array.isArray(arr);
+            console.log(re);
+        }
+    </script>
+</body>
+
+</html>

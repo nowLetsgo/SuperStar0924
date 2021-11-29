@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            扩展运算符：（三点运算符）
+                语法：...数组/...对象/...字符串
+                可以展开数组或者对象
+        */
+        {
+            const arr1 = [1, 2, 3, 4];
+            console.log("比较案例", 1, 2, 3, 4); //比较案例
+            console.log("扩展运算符", ...arr1); //...可以把数组展开为 1,2,3,4
+        }
+
+        {
+            //复制数组
+            const arr = [1, 2, 3, 4];
+            const re = [...arr];
+            console.log(re === arr);
+            console.log("复制数组", re);
+        }
+
+        {
+            //合并数组
+            const arr1 = [1, 2, 3];
+            const arr2 = [2, 3, 4];
+            const re = [...arr1, ...arr2, "A"];
+            console.log("合并数组", re);
+        }
+
+        {
+            //展开对象：目前只能在一个对象中去展开另外一个对象
+            //也可以合并对象
+            const o = {
+                name: "laoyang",
+                age: 18,
+                sex: "男"
+            }
+            const re = {
+                ...o,
+                height: 160,
+                do() {
+                    console.log(this);
+                }
+            }
+
+            console.log(re);
+            console.log(re === o);
+        }
+
+
+        {
+            //展开字符串
+            //可以将字符串转数组
+            const str = "12345";
+            const re = [...str];
+            console.log(re);
+        }
+    </script>
+</body>
+
+</html>

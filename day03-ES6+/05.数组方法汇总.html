@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            常用方法汇总：
+                every、filter、find、findIndex、forEach、indexOf、join、lastIndexOf、map、pop、push、reduce、reverse、shift、slice、some、sort、splice、unshift、concat
+
+
+                copyWithin、at、entries、keys、values、fill、flat、includes
+
+
+            常见效果：
+                排序:冒泡、快速排序
+                去重:至少掌握3中方法
+
+        
+        
+        */
+
+        const arr = ["a", "b", "c", "d", "e"]
+
+        {
+            //at方法 和下标类似 但是可以倒着查找
+            console.log(arr.at(3));
+            console.log(arr.at(-1));
+        }
+
+        {
+            //fill方法 填充(参数1：填充内容，参数2：开始位置，参数3：结束位置)，改变原数组
+            // const arr = [2, 2, 2, 2, 2];
+            const arr = new Array(10);
+            const re = arr.fill("a", 1, 4);
+            console.log("re", re, "arr", arr);
+        }
+
+        {
+            //flat 拉平数组（数组扁平化）,原数组不会被修改，参数就是扁平化的层数
+            //如果只想要1维数组，则直接参数书写Infinity
+            const arr = [1, [2, [3]], 4];
+            const re = arr.flat(Infinity);
+            console.log("re", re, "arr", arr);
+        }
+
+        {
+            //includes:检测是否出现某个元素，如果是对象类型，则比较地址
+            const e = {}
+            const arr = [1, 2, [3], 4, e];
+            console.log(arr.includes(2));
+            console.log(arr.includes([3])); //false
+            console.log(arr.includes(e)); //true
+        }
+
+
+        {
+            // sort排序
+            const arr = [4, 14, 24, 6, 51, 2];
+            //当sort没有传递参数的时候，会把每一个元素转为字符串类型，按照字符串的比较方式去比较
+            // const re1 = arr.sort();
+            // console.log(re1);
+
+            /* const re = arr.sort(function (a, b) {
+                console.log(a, b);
+                return a - b
+            }) */
+
+            const re = arr.sort(function (a, b) {
+                //每次进入回调函数两个元素
+                //a是后边值，b是前边的值
+                //根据当前回调函数的返回值是正数还是负数还是0，来决定是否把这个两个元素交换位置
+                //当回调函数返回的值是正数或者0的时候，不会交换两个元素的位置，当返回的是负数的时候，会交换两个元素的位置
+                if (a - b >= 0) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            })
+
+            console.log("re", re);
+        }
+
+
+        {
+            const arr = [1, 2, 3];
+            /* arr.push(1, 2, 3); //
+            console.log(arr); //123123 */
+
+
+            //concat方法只能拆分一层数组
+            const re = arr.concat(1, [
+                [2]
+            ], 3)
+            console.log(re); //123123
+        }
+
+
+        {
+            // copyWithin：当前数组内部，将指定位置的成员复制到其他位置（会覆盖原有成员）
+            //参数1:开始替换的位置
+            //参数2：开始选取的位置
+            //参数3：结束选取的位置（不包含）
+            const arr = ["a", "b", "c", "d", "e", "f", "g"];
+
+            const re = arr.copyWithin(0, 4, 6);
+            console.log(re);
+
+        }
+    </script>
+</body>
+
+</html>
