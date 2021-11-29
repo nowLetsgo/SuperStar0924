@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            箭头函数的特点：
+        
+        */
+
+
+        //1.箭头函数中使用this
+        const o = {
+            name: "laowang",
+            //对象方法简写，和不简写一致
+            say() {
+                console.log(this);
+            },
+            //箭头函数写法，一般我们对象的方法都写成简写，不会写成箭头函数
+            do: () => {
+                console.log(this);
+            },
+            study() {
+                function inner() {
+                    console.log(this); //window
+                }
+                inner();
+
+                const con = () => {
+                    console.log(this); //o
+                }
+                con();
+            }
+        }
+
+        o.say(); //o
+        o.do(); //window
+        o.study();
+
+
+        //2.箭头函数不适用于构造函数
+        /* const Person = () => {
+
+        }
+        const p1 = new Person(); //TypeError: Person is not a constructor */
+
+        //3.箭头函数也不适用于事件函数
+        document.onclick = () => {
+            console.log(this); //我们还是希望事件函数的this指向事件发生的元素
+        }
+
+        //4.箭头函数没有arguments
+        const fn = (...rest) => {
+            // console.log(arguments); // ReferenceError: arguments is not defined
+            console.log(rest);
+        }
+        fn(1, 2, 3, 4)
+
+        //5.箭头函数不能使用yield命令，意味着不能当作gennerator函数（后边会讲）
+        function* fn2() {
+
+        }
+    </script>
+</body>
+
+</html>

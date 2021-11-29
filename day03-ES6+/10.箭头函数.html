@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            箭头函数 
+        */
+
+        //箭头函数基础写法
+        function fn1(a, b) {
+            return a + b;
+        }
+        const fn11 = (a, b) => {
+            return a + b;
+        }
+        console.log(fn11(1, 1));
+
+        //当函数的参数有且只有一个的时候,小括号可以省略
+        function fn2(a) {
+            return a + 1;
+        }
+        const fn22 = a => {
+            return a + 1;
+        }
+        console.log(fn22(1));
+
+        //当函数的函数体内 有且只有一句语句的时候，可以省略大括号
+        function fn3(a) {
+            console.log(a + 1);
+        }
+        const fn33 = a => console.log(a + 1);
+
+        //当函数的函数体内 有且只有一句返回语句的时候，可以省略大括号和return
+        function fn4(a) {
+            return a + 1;
+        }
+        const fn44 = a => a + 1;
+
+        console.log(fn44(1));
+    </script>
+</body>
+
+</html>

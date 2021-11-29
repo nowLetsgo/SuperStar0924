@@ -43,9 +43,11 @@
         var baseArr1 = ["a", "b", "c", "d"];
 
         //map
-        var mapResult = baseArr1.map(function (item, index) {
+        /* var mapResult = baseArr1.map(function (item) {
             return item + "1"
-        });
+        }); */
+        //箭头函数写法：
+        var mapResult = baseArr1.map(item => item + "1");
         console.log("mapResult", mapResult);
 
 
@@ -64,10 +66,12 @@
             age: 22
         }]
         //some
-        var someResult = baseArr2.some(function (item, index) {
+        /* var someResult = baseArr2.some(function (item, index) {
             console.log("some的index", index);
             return item.age < 18;
-        })
+        }) */
+        //箭头函数写法
+        var someResult = baseArr2.some(item => item.age < 18)
         console.log("someResult", someResult);
 
         //every

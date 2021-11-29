@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            ** 运算符：求幂
+                - 当一个表达式有多个**的时候，则是从右向左计算的
+        
+        */
+        console.log(Math.pow(2, 10));
+        console.log(2 ** 10);
+        console.log(2 ** 2 ** 3);
+
+
+        /* 
+            进制表示：
+                二进制：0b前缀
+                八进制：0o前缀（ES5是0作为前缀）
+                十进制：没有前缀
+                十六进制：0x前缀
+                没有提供其他进制的写法，一切使用字符串表示即可
+            
+            当我们书写的是其他进制的时候，在打印或者计算的时候，会先转为十进制，才参与计算
+        
+        */
+
+        {
+            let a = 0b101;
+            let b = 0o11;
+            let c = 0xff;
+            //想写一个20进制的数字，我们没有对应的标识方法，只能书写在字符串中，在parseInt转换的时候，写明是多少进制
+            let d = 'aa';
+            console.log(parseInt(d, 20)); //把20进制的d 转为10进制
+
+            console.log(a, b, c);
+        }
+
+
+
+        {
+            // Math.trunc() 方法会将数字的小数部分去掉， 只保留整数部分
+            // Math.sign() 判断一个数字的正数(1表示)还是负数(-1表示) 还是0 或者是NaN
+            // Math.sqrt() 平方根
+            // Math.cbrt() 立方根
+            // Math.hypot() 求所有参数平方和的平方根
+
+            console.log(Math.trunc(-3.1));
+            console.log(Math.trunc(3.1));
+
+            console.log(Math.sign(0)); //0
+            console.log(Math.sign(-3)); //-1
+            console.log(Math.sign(3)); //1
+            console.log(Math.sign(NaN)); //NaN
+
+            console.log(Math.sqrt(2)); //1.414
+            console.log(Math.cbrt(2)); //1.260
+
+            console.log(Math.hypot(3, 4)); //5
+        }
+
+
+
+        {
+            // Number.isFinite(i): 判断是否是有限大的数
+            // Number.isNaN(i): 判断是否是NaN
+            // Number.isInteger(i): 判断是否是整数
+            // Number.parseInt(str): 将字符串转换为对应的数值（和global的parseInt一致）
+
+            console.log(Number.isFinite(1)); //true
+            console.log(Number.isFinite(1 / 0)); //false
+
+            //isNaN先转number 在判断
+            console.log(isNaN("a")); //true
+            //Number的isNaN只判断是否是真实的NaN 而不进行类型转换
+            console.log(Number.isNaN("a")); //false
+
+
+            console.log(Number.isInteger(1)); //true
+            console.log(Number.isInteger(1.1)); //false
+        }
+    </script>
+</body>
+
+</html>

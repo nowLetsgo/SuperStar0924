@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //封装一个求和函数，把所有实参进行累加
+        function sum(...rest) {
+            /* //arguments方法
+            return Array.from(arguments).reduce(function (p, c) {
+                return p + c
+            }, 0) */
+
+            //rest参数方法
+            //在形参的位置可以书写rest参数，拿到剩余所有参数组成的数组
+            return rest.reduce(function (p, c) {
+                return p + c
+            }, 0)
+        }
+
+        const re = sum(1, 2, 3, 4, 5, 6);
+        console.log(re);
+    </script>
+</body>
+
+</html>

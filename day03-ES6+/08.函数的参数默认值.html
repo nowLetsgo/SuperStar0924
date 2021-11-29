@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //ES5的函数参数默认值写法
+        function fn(a, b, c) {
+            //如果函数需要的参数没有传递，则可能是null或者undefined
+            //所以可以判断当某个参数是null或者undefined的时候，给上默认值
+            b = b === undefined || b === null ? 1 : b;
+            console.log(b);
+        }
+        fn(1, null, 3)
+
+
+
+        //ES6提供了函数参数默认值的写法
+        //只有传递的是undefined 或者 没有传递值（默认undefined） 才会使用默认值
+        //如果传递的是null，则认为已经传递了参数了
+        //但是一般我们会把可传可不传的参数 放在末尾
+        function inner(a, b = 1, c = 3) {
+            console.log(b, c);
+        }
+        inner(1, null)
+    </script>
+</body>
+
+</html>
