@@ -75,6 +75,19 @@
 
             console.log("嵌套解构", name, math, ch, girlFri1, girlFri2, girlFri3);
         }
+
+
+        //对象的rest参数
+        {
+
+            const {
+                name,
+                age,
+                ...other
+            } = o
+
+            console.log("rest参数", name, age, other);
+        }
     </script>
 </body>
 

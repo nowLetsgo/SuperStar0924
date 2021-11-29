@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const o = {
+            name: "laoyang",
+            do() {
+                console.log(this);
+            }
+        };
+
+
+        //先执行赋值语句，赋值语句中得到了o.do的地址，并返回了o.do的地址，赋值语句结束以后o.do的地址直接调用的，所以this指向window
+        (o.do = o.do)(); //window
+        (o.do || o.do)(); //window
+        (o.do, o.do)(); //window
+        //小括号提升优先级的时候，并不属于操作符，所以不会进行计算，则以下代表可以直接理解为o.do()
+        (o.do)(); //o
+    </script>
+</body>
+
+</html>

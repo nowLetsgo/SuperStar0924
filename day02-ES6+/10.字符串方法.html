@@ -87,6 +87,20 @@
             console.log(str.padStart(10, "ab"));
             console.log(str.padEnd(10, "ab"));
         }
+
+
+        {
+            // 基本包装类型不可变,所有字符串方法都是返回一个新字符串，不会改变原字符串
+            var str = "abcde";
+            /* 
+                伪代码：
+                var _Str = new String(str);
+                var re = _Str.slice(0,1)
+                delete _Str;
+            
+            */
+            var re = str.slice(0, 1)
+        }
     </script>
 </body>
 

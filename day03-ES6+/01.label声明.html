@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* for (var i = 0; i < 5; i++) {
+            if (i === 3) {
+                break;
+            }
+            console.log(i);
+        }
+        */
+
+        //根据一些条件 我们可能再for嵌套内部要退出某个for，则我们可以给for声明一个变量保存，这种声明方式被称作label声明
+        //label声明只供break和continue使用
+        outer:
+            for (var i = 0; i < 10; i++) {
+
+                inner: for (var j = 0; j < 10; j++) {
+                    if (i === 5) {
+                        break outer;
+                    }
+                    console.log(i, j);
+                }
+            }
+    </script>
+</body>
+
+</html>
