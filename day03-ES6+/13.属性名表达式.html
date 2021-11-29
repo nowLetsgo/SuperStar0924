@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        {
+            //面试题
+            //原理：对象的key必须一定是一个字符串
+            const o1 = {
+                name: "laoyang"
+            };
+            const o2 = {
+                age: 18
+            };
+            const o3 = {};
+            //当把一个对象设置为一个key的时候，会自动转为string类型 为[object Object]
+            o3[o1] = 1; //多了一个'[object Object]'属性 值为1
+            o3[o2] = 2; //修改了'[object Object]'属性 值为2
+            console.log(o3[o1], o3[o2]); //2 2
+        }
+
+        {
+            // 属性名表达式
+            const key1 = "name";
+            const key2 = "age";
+            //创建对象 两个key分别是key1和key2
+            const o = {
+                //当key是一个变量的时候，需要放在[]中，就可以把变量解析，这种写法被称作属性名表达式
+                [key1]: "laoyang",
+                [key2]: 18,
+                //属性名表达式中可以书写任意的表达式
+                [1 + 1]: "hello"
+            }
+            console.log(o);
+        }
+
+
+        
+    </script>
+</body>
+
+</html>

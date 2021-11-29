@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Object的静态方法：assign is
+        */
+
+        {
+            // Object.assign():合并多个对象
+            const o1 = {
+                name: "laoyang"
+            };
+            const o2 = {
+                age: 18
+            };
+            /* //Object.assign()把后边所有的对象全部合并在了第一个对象中
+            const re = Object.assign(o1, o2);
+            console.log(re === o1, re, o1, o2); */
+
+            //想要合并多个对象，并且不改变原来的对象
+            const re = Object.assign({}, o1, o2);
+            console.log(re, o1, o2);
+
+        }
+
+
+
+        {
+            // Obejct.is():判断两个对象是否相等，和===一样，只是修复了NaN不等NaN的问题
+            const o1 = {};
+            const o2 = {};
+            console.log(o1 === o2); //false
+            console.log(Object.is(o1, o2)); //false
+
+            console.log(NaN === NaN); //false
+            console.log(Object.is(NaN, NaN)); //true
+        }
+    </script>
+</body>
+
+</html>
