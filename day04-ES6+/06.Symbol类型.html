@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Symbol:
+                - 用来做独一无二的值，主要用于给对象扩展独一无二的属性
+        
+        */
+        {
+            const sy1 = Symbol();
+            const sy2 = Symbol();
+            console.log("sy1,sy2", sy1, sy2);
+            console.log(typeof sy1);
+            console.log(sy1 === sy2); //false
+        }
+
+        {
+            //对象的key设置因为一个symbol，可以进行独一无二
+            //Symbol的参数没有其他意义，只是一个标识，用来识别，一般参数书写的都是这个Symbol的key的变量名
+            const o = {
+                name: "laowang"
+            };
+
+            //不要直接扩展 否则将很难获取
+            // o[Symbol()] = "world";
+
+            const key1 = Symbol("key1");
+            const key2 = Symbol("key2");
+            o[key1] = "world"
+            o[key2] = "hello"
+
+
+            console.log("设置了Symbol的属性", o[key1], o[key2]);
+
+            //for in 遍历
+            for (let key in o) {
+                console.log("forIn遍历", key);
+            }
+
+
+            //Object.getOwnPropertySymbols()可以得到Symbol属性
+            console.log(Object.getOwnPropertySymbols(o));
+        }
+
+        {
+            //Symbol类型转换不能转数字
+            // console.log(Number(Symbol()));
+        }
+
+
+        {
+
+        }
+    </script>
+</body>
+
+</html>
