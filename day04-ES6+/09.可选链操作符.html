@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      const o = {
+        name: "laowang",
+        sex: "男",
+        score: {
+          math: 90,
+          ch: 100,
+        },
+      };
+
+      {
+        //o是存在的 并且值是一个对象，以下两个方法都可以得到我们想要的值
+
+        //在获取o的name的时候，可能o不存在值（值可能是nullish的值）
+        const name = o ? o.age : undefined;
+        console.log(name);
+
+        //不使用三元书写
+        const sex = o.sex1;
+        console.log(sex);
+      }
+
+      {
+        //假设o不存在 那我们就需要判断o值是不是nullish的是，如果是则在获取，此时第二种方法就不能适用了
+        let o = null;
+
+        //在获取o的name的时候，可能o不存在值（值可能是nullish的值）
+        const name = o ? o.age : undefined;
+        console.log(name);
+
+        //不使用三元书写
+        // const sex = o.sex1;
+        // console.log(sex);
+      }
+
+      {
+        let o = null;
+        //使用可选连操作符
+        const name = o?.name; //判断o是不是nullish的值，如果不是则获取name，如果是，直接返回undefined
+        console.log(name);
+      }
+
+      {
+        //允许读取位于连接对象链深处的属性的值
+        const o = {
+          name: "laowang",
+          sex: "男",
+          score: {
+            math: 90,
+            ch: 100,
+          },
+        };
+
+        //如果成绩出来了，则得到数学的成绩，没有出来则返回undefined
+        /* const math = o.score.math;//一旦score没有，则使用了undefined调用的math 会报错，所以需要判断
+          console.log(math); */
+
+        //查看score属性是否是nullish的值，如果不是则获取math属性
+        //?.操作符：判断当前操作符前的值是不是nullish的值，如果是则直接返回undefined 如果不是则直接放行
+        const math = o?.score?.math;
+        console.log(math);
+      }
+    </script>
+  </body>
+</html>

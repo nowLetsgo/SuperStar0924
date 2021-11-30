@@ -1,53 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <script>
-        Function.prototype.myCall = function (context, ...rest) {
-            //判断是否是nullish
-            if (context === null || context === undefined) {
+      Function.prototype.myCall = function (context, ...rest) {
+        //判断是否是nullish
+        /* if (context === null || context === undefined) {
                 context = window;
-            }
-            //判断是否是基本类型值
-            if (typeof context !== 'object' && typeof context !== 'function') {
-                context = Object(context);
-            }
+            } */
+        context = context ?? window;
 
-            //给context扩展一个方法 为调用call的函数
-            const sy = Symbol("sy");
-            context[sy] = this;
-
-            //调用context[sy]方法 并传参,得到函数调用返回值
-            const re = context[sy](...rest)
-
-            //删除刚才添加的方法
-            delete context[sy];
-
-            //把函数调用的返回值返回出去
-            return re;
+        //判断是否是基本类型值
+        if (typeof context !== "object" && typeof context !== "function") {
+          context = Object(context);
         }
 
+        //给context扩展一个方法 为调用call的函数
+        const sy = Symbol("sy");
+        context[sy] = this;
 
-        function fn(a, b) {
-            console.log(this);
-            console.log(a + b);
-            return "hello"
-        }
+        //调用context[sy]方法 并传参,得到函数调用返回值
+        const re = context[sy](...rest);
 
-        const re1 = fn.call(null, 1, 2) //window
-        const re2 = fn.call(1, 1, 2) //Number(1)
-        const re3 = fn.call([], 1, 2) //[]
-        const re4 = fn.call({}, 1, 2) //{}
+        //删除刚才添加的方法
+        delete context[sy];
 
-        console.log('re1,re2,re3,re4', re1, re2, re3, re4);
+        //把函数调用的返回值返回出去
+        return re;
+      };
+
+      function fn(a, b) {
+        console.log(this);
+        console.log(a + b);
+        return "hello";
+      }
+
+      const re1 = fn.call(null, 1, 2); //window
+      const re2 = fn.call(1, 1, 2); //Number(1)
+      const re3 = fn.call([], 1, 2); //[]
+      const re4 = fn.call({}, 1, 2); //{}
+
+      console.log("re1,re2,re3,re4", re1, re2, re3, re4);
     </script>
-</body>
-
+  </body>
 </html>

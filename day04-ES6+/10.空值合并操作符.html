@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+            空值合并操作符：
+                - a??b：判断a是否是null或者undefined，如果是则返回b，否则返回a
+        */
+      {
+        let o = null;
+        //判断：当o是null或者是undefined的时候，则把o变成window
+        if (o === null || o === undefined) {
+          o = window;
+        }
+      }
+
+      {
+        let o = 0;
+        //判断：当o是null或者是undefined的时候，则把o变成window
+        o = o ?? window;
+        console.log(o);
+      }
+
+      //空值合并和||类似，但是||左侧的操作数是要转为boolean类型，然后判断，但是空值合并只检测nullish的值
+      {
+        let o = 0;
+        //判断：当o是null或者是undefined的时候，则把o变成window
+        o = o || window;
+        console.log(o);
+      }
+    </script>
+  </body>
+</html>
