@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // "use strict";
+      {
+        // Object.freeze():冻结对象,对象变成了只读
+        const o = {
+          name: "laowang",
+          age: 18,
+        };
+
+        //冻结对象(直接冻结原对象，并返回原对象的引用)
+        const re = Object.freeze(o);
+
+        // o.name = "laoyang";
+        // delete o.name;
+        console.log(o);
+      }
+
+      {
+        // Object.seal():封闭一个对象，不能新增和删除，但是属性值在创建的时候如果可写，则这个属性值可以被修改
+        const o = {
+          name: "laowang",
+          age: 18,
+        };
+
+        Object.seal(o); //(封闭冻结原对象，并返回原对象的引用)
+        o.name = "laonie"; //但是值能被修改
+        delete o.age; //不能被删除
+        console.log(o);
+      }
+
+      {
+        //判断一个对象上有没有某个属性?
+        //1. in 操作符:检测自有属性和原型属性
+        //2. Object.prototype.hasOwnProperty :只检测自有属性
+        //3. Object.hasOwn
+        const o = {
+          name: "laonie",
+          age: 18,
+        };
+
+        //in
+        console.log("name" in o);
+        console.log("toString" in o);
+
+        //hasOwnProperty
+        console.log(o.hasOwnProperty("name"));
+        console.log(o.hasOwnProperty("toString"));
+
+        //hasOwn
+        console.log(Object.hasOwn(o, "name"));
+        console.log(Object.hasOwn(o, "toString"));
+      }
+    </script>
+  </body>
+</html>
