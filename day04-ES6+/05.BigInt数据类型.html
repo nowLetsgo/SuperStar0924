@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            引入了一种新的数据类型 BigInt（大整数），来解决number计算精度和限制这个问题。BigInt 只用来表示整数，没有位数的限制，任何位数的整数都可以精确表示
+        
+        */
+        {
+            //number在运算的时候，如果计算的值大于了2的53次方。则计算将不再准确
+            console.log(2 ** 53);
+            console.log(2 ** 53 + 1);
+            console.log(2 ** 53 + 2);
+            console.log(2 ** 53 + 3);
+            console.log(2 ** 53 + 4);
+            console.log(2 ** 53 + 5);
+            console.log(2 ** 53 + 6);
+            console.log(2 ** 53 + 7);
+
+            //number在运算的时候，如果计算的值大于2的1024次方，则不再计算，直接返回Infinity
+            console.log(2 ** 1023);
+            console.log(2 ** 1024);
+        }
+
+
+        {
+            //创建一个bigInt
+            const bigInt1 = 1n;
+            console.log("bigInt1", bigInt1);
+            console.log("bigInt1类型", typeof bigInt1);
+        }
+
+        {
+            //bigInt类型只能和bigInt类型一起计算
+            const bigInt1 = 1n;
+            // console.log("计算", bigInt1 + 1);//no no no
+            console.log("计算", bigInt1 + 1n);
+
+
+            console.log(2n ** 102400n);
+        }
+    </script>
+</body>
+
+</html>
