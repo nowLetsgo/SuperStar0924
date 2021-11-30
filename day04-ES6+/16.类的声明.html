@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //ES5声明类
+      /* function Person(name,age) {
+          //公有属性
+          this.name = name;
+          this.age = age;
+        }
+        //公有方法
+        Person.prototype.study = function () {
+          console.log("ES6");
+        };
+
+        //Person类的静态方法
+        Person.do = function () {
+          console.log("do");
+        }; */
+
+
+
+
+				
+      //ES6声明类 使用了class声明语法
+
+      class Person {
+        //这个区域不是对象！！！而是class自己的语法场景
+        //在类中如果需要给公有属性传参，请书写constructor方法,当这个类被实例化的时候，会自动的调用这个constructor方法
+        constructor(name, age) {
+          //this指向实例化对象
+          this.name = name;
+          this.age = age;
+        }
+        //直接给实例化对象扩展公有属性（不需要传参的话 直接写在外边就可以 不用写在constructor中）
+        height = 180;
+
+        //扩展原型对象上的方法（公有方法）
+        study() {
+          console.log("study");
+        }
+
+        //想要给Person扩展静态方法 请使用static关键字
+        static do() {
+          console.log("do");
+        }
+        static say = "hello";
+      }
+
+      //当类书写完毕的时候，仍然可以使用prototype属性扩展
+      /* Person.prototype.eat = function () {
+        console.log("卤煮");
+      }; */
+      Object.defineProperty(Person.prototype, "eat", {
+        value: function () {
+          console.log("卤煮");
+        },
+      });
+
+      console.log("Person", Person, typeof Person);
+      const p1 = new Person("laonie", 19);
+      console.log("p1", p1);
+      console.log("静态do", Person.do);
+      console.log("静态say", Person.say);
+    </script>
+  </body>
+</html>
