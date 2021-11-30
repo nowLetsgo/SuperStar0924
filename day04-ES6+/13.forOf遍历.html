@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+            for...of..遍历是专门消费iterator接口的一种遍历机制
+
+        */
+
+      const arr = ["a", "b", "c"];
+
+      {
+        //for...in遍历
+        for (let key in arr) {
+          console.log("forin遍历数组", key, arr[key]);
+        }
+      }
+
+      {
+        //for...of遍历
+        for (let value of arr) {
+          console.log("forof遍历数组", value);
+        }
+
+        for (let value of "abcdefg") {
+          console.log("forof遍历字符串", value);
+        }
+
+        for (let value of new Set(["a", "b", "c"])) {
+          console.log("forof遍历set", value);
+        }
+
+        const map = new Map([
+          [true, "boolean"],
+          [123, "number"],
+        ]);
+        for (let value of map) {
+          console.log("forof遍历map", value);
+        }
+
+        //对象不能被forof遍历 is not iterable
+        const o = {
+          name: "laowang",
+          age: 18,
+        };
+        for (let value of o) {
+          console.log("遍历对象", value);
+        }
+      }
+    </script>
+  </body>
+</html>

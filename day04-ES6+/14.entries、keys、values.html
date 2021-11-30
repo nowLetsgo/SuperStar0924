@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+            entries、keys、values：
+                - 在数组、map、set等对象上都有这三个方法，
+                    分别用来获取键值对组成的迭代器对象
+                    所有的key组成的迭代器对象
+                    所有的值组成的迭代器对象
+
+        */
+      {
+        const arr = ["a", "b", "c", "d"];
+        //entries：
+        const arrEntries = arr.entries();
+        console.log("arrEntries", arrEntries);
+        for (let value of arrEntries) {
+          console.log("arr的entries遍历", value);
+        }
+
+        //keys
+        const arrKeys = arr.keys();
+        for (let value of arrKeys) {
+          console.log("arr的keys遍历", value);
+        }
+
+        //values
+        const arrValues = arr.values();
+        for (let value of arrValues) {
+          console.log("arr的keys遍历", value);
+        }
+      }
+
+      {
+        //   Object静态方法有 entries keys values 分别可以得到对象的 减值对、所有的键、所有的值组成的迭代器对象(真实是一个数组结构)
+        // 一般用来使用for of 遍历对象使用
+
+        const o = {
+          name: "laowang",
+          age: 18,
+          sex: "nan",
+        };
+
+        const oEntries = Object.entries(o);
+        const oKeys = Object.keys(o);
+        const oValues = Object.values(o);
+
+        console.log("oEntries,oKeys,oValues", oEntries, oKeys, oValues);
+
+        //使用for of遍历对象
+        for (let key of Object.keys(o)) {
+          console.log("遍历对象keys", key, o[key]);
+        }
+
+        //使用for of遍历对象
+        for (let value of Object.values(o)) {
+          console.log("遍历对象value", value);
+        }
+      }
+    </script>
+  </body>
+</html>

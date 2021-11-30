@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function myIterator(arr) {
+        let index = 0;
+        return {
+          next() {
+            /* if (index <= arr.length - 1) {
+              return { value: arr[index++], done: false };
+            } else {
+              return { value: arr[index++], done: true };
+            } */
+            return index <= arr.length - 1
+              ? { value: arr[index++], done: false }
+              : { value: arr[index++], done: true };
+          },
+        };
+      }
+
+      //使用
+      const arr = ["a", "b", "c", "d", "e"];
+      const iter = myIterator(arr);
+      console.log(iter.next()); //{value: 'a', done: false}
+      console.log(iter.next()); //{value: 'b', done: false}
+      console.log(iter.next()); //{value: 'c', done: false}
+      console.log(iter.next()); //{value: 'd', done: false}
+      console.log(iter.next()); //{value: 'e', done: false}
+      console.log(iter.next()); //{value: undefined, done: true}
+    </script>
+  </body>
+</html>

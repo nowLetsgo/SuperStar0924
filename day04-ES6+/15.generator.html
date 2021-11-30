@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+            先写一个小案例：先请求数据A 再请求数据B 再请求数据C
+        */
+
+      {
+        //回调地狱写法-不是我们前端所推荐的
+        /* console.log("A......");
+        setTimeout(() => {
+          console.log("A..完毕");
+          console.log("B....");
+          setTimeout(() => {
+            console.log("B..完毕");
+            console.log("C.....");
+            setTimeout(() => {
+              console.log("C..完毕");
+            }, 1000);
+          }, 1000);
+        }, 1000); */
+      }
+
+      /* 
+        - Generator 函数是 ES6 提供的一种异步编程解决方案，内部封装了很多的状态，被称作状态机 生成器
+        - Generator 函数是一个普通函数，但是有两个特征。一是，function关键字与函数名之间有一个星号；二是，函数体内部使用yield表达式，定义不同的内部状态（yield在英语里的意思就是“产出”）
+        - 执行Generator会返回一个迭代器对象（iterator），使用iterator来遍历出Generator内部的状态  
+    
+    
+      */
+      function* getData() {
+        console.log("A数据开始请求。。。。");
+        yield setTimeout(() => {
+          console.log("A..完毕");
+          re.next();
+        }, 1000);
+
+        console.log("B数据开始请求。。。。");
+
+        yield setTimeout(() => {
+          console.log("B..完毕");
+          re.next();
+        }, 1000);
+
+        console.log("C数据开始请求。。。。");
+
+        yield setTimeout(() => {
+          console.log("C..完毕");
+        }, 1000);
+      }
+
+      //执行Generator会返回一个迭代器对象（iterator），使用iterator来遍历出Generator内部的状态
+      const re = getData();
+      console.log(re);
+      console.log(re.next()); //{value: 1, done: false} value的值其实是当前yield 后的语句返回值
+    </script>
+  </body>
+</html>
