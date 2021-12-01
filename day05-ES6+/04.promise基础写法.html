@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            什么是Promise:
+                - 回调函数嵌套回调函数被称作回调地狱，代码层层嵌套，变得难以维护。代码臃肿，可读性差，耦合度过高。
+                - ES2015的标准里，Promise的标准化，一定程度上解决了JavaScript的流程操作问题。Promise对象是一个异步编程的解决方案，可以将异步操作以同步的流程表达出来, 避免了回调地狱写法（Promise其实就是处理异步的）
+
+            Promise对象：
+                - Promise对象是一个构造函数，可以实例化使用
+                - Promise对象上有all、allSettled、any、race、resolve、reject等多个静态方法
+                - Promise的原型对象上有 then、catch、finally等多个原型方法
+
+        
+        */
+
+        // console.dir(Promise);
+        // console.log(Promise.prototype);
+
+
+        //promise的基础使用
+        //因为Promise是处理异步的，所以请先实例化得到一个promise的实例
+        //在实例化Promise对象的时候，需要传递一个回调函数作为参数，内部书写对异步代码的处理
+        const p1 = new Promise(() => {
+            //书写异步代码
+            console.log("开始请求a数据。。。");
+            setTimeout(() => {
+                console.log("请求a数据成功");
+            }, 1000)
+        });
+
+
+        //得到一个promise实例
+        console.log("p1", p1);
+    </script>
+</body>
+
+</html>

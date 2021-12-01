@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //ES6继承
+        //父类
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            eat() {
+                console.log("eat");
+            }
+        }
+
+        //子类(声明子类的时候都会直接写好继承哪一个父类)
+        //直接书写extends继承的时候，会直接继承了原型对象上的方法和构造器中的公有属性
+        class Student extends Person {
+            constructor(name, age, weight) {
+                //在ES6的继承中，子类上没有this，所以当我们想要使用构造器的时候，或者想要使用this的时候，会抛出错误
+                //所以在构造器中的最前边，请先调用super方法，把父类的this拿到构造器中使用
+                //super帮你调用了父类的构造器，所以要想super传递父类需要的参数
+                super(name, age);
+                this.weight = weight
+            }
+
+            //直接给子类扩展公有属性，虽然省略了this 但是不能传参
+            height = 180;
+
+            study() {
+                console.log("study");
+            }
+        }
+
+        const s1 = new Student("laoyang", 18, 170);
+        console.log(s1);
+    </script>
+</body>
+
+</html>

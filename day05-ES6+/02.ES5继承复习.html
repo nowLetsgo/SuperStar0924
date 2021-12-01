@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //ES5继承复习-构造函数+原型组合继承
+        //父类（超类）
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype.eat = function () {
+            console.log("eat");
+        }
+
+        //子类
+        function Student(name, age, height, weight) {
+            //构造函数继承 调用父类 并把父类的this指向子类的this
+            Person.call(this, name, age);
+            this.height = height;
+            this.weight = weight;
+        }
+        //原型链继承 把父类的实例化对象当做子类的原型对象
+        Student.prototype = new Person;
+        //修正原型对象的constructor
+        Student.prototype.constructor = Student;
+        Student.prototype.study = function () {
+            console.log("ES6")
+        }
+        const s1 = new Student("laonie", 19, 170, 180);
+        console.log(s1);
+    </script>
+</body>
+
+</html>
