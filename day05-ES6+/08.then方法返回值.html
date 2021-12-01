@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //请求A数据的异步代码 被promise进行处理
+        const p1 = new Promise((resolve, reject) => {
+            try {
+                console.log("开始请求A数据");
+                // throw new Error("Error:网络出现问题")
+                setTimeout(() => {
+                    console.log("A数据请求成功");
+                    resolve(["laowang", "laoyang"])
+                }, 2000)
+            } catch (e) {
+                console.log("报错了,报错信息是", e);
+                reject("出现错误" + e);
+            }
+        })
+
+        /* 
+           成功状态的promise实例调用，then方法返回值：
+                - then方法默认返回成功状态的promise实例，值为这个回调函数的返回值
+                - 如果then方法的回调函数出现报错，则then方法返回失败的promise实例，值为错误信息
+                - 当then的回调函数返回的是promise实例的时候
+                    - 当回调函数return的promise实例是成功状态的时候，则then的返回值也是成功状态的promise实例，值为内部return的promise实例的值
+                    - 当回调函数return的promise实例是失败状态的时候，则then的返回值也是失败状态的promise实例,值是内部return的promise实例的失败信息
+
+        */
+        const p2 = p1.then((value) => {
+
+            return new Promise((resolve, reject) => {
+                console.log("开始请求B");
+                try {
+                    throw new Error("B错误：未知错误");
+                    setTimeout(() => {
+                        console.log("B数据请求成功");
+                        resolve([1, 2, 3])
+                    }, 2000)
+                } catch (e) {
+                    reject(e);
+                }
+            })
+
+        }, (reason) => {
+            console.log("then的第二个回调函数，错误信息是", reason);
+        });
+
+        console.log("p2", p2);
+    </script>
+</body>
+
+</html>

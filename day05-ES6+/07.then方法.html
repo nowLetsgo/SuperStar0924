@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //请求A数据的异步代码 被promise进行处理
+        const p1 = new Promise((resolve, reject) => {
+            try {
+                console.log("开始请求A数据");
+                throw new Error("Error:网络出现问题")
+                setTimeout(() => {
+                    console.log("A数据请求成功");
+                    resolve(["laowang", "laoyang"])
+                }, 2000)
+            } catch (e) {
+                console.log("报错了,报错信息是", e);
+                reject("出现错误" + e);
+            }
+        })
+
+        /* 
+            Promise的原型对象上有一个then方法
+                - 用来处理promise状态改变后的操作，then的执行是同步执行的
+                - then中接受两个回调函数作为参数，当调用then的promise实例状态发生变化的时候，就会执行内部对应的回调函数
+                - then的第一个回调函数是处理promise实例成功状态的,函数的参数就是当前成功promise实例的值，then的第二个回调函数是处理promise实例是失败状态的，函数的参数就是当前失败的promise实例的值
+                - 总结来说，then的执行是同步的，但是then中的回调函数的执行是一定异步的
+                
+        
+        */
+        const p2 = p1.then((value) => {
+            console.log("then的第一个回调函数,当前成功状态的值为", value);
+        }, (reason) => {
+            console.log("then的第二个回调函数，错误信息是", reason);
+        });
+
+        console.log("p2", p2);
+    </script>
+</body>
+
+</html>
