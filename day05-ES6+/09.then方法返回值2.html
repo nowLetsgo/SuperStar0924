@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //请求A数据的异步代码 被promise进行处理
+        const p1 = new Promise((resolve, reject) => {
+            try {
+                console.log("开始请求A数据");
+                throw new Error("Error:网络出现问题")
+                setTimeout(() => {
+                    console.log("A数据请求成功");
+                    resolve(["laowang", "laoyang"])
+                }, 2000)
+            } catch (e) {
+                console.log("报错了,报错信息是", e);
+                reject("出现错误" + e);
+            }
+        })
+
+        /* 
+           失败状态的promise实例调用，then方法返回值：
+                和成功状态调用promise实例的返回值是一致
+        */
+        const p2 = p1.then((value) => {
+
+        }, (reason) => {
+            console.log("then的第二个回调函数，错误信息是", reason);
+            return new Promise((resolve, reject) => {
+                console.log("开始请求B");
+                try {
+                    throw new Error("B错误：未知错误");
+                    setTimeout(() => {
+                        console.log("B数据请求成功");
+                        resolve([1, 2, 3])
+                    }, 2000)
+                } catch (e) {
+                    reject(e);
+                }
+            })
+        });
+
+        console.log("p2", p2);
+    </script>
+</body>
+
+</html>

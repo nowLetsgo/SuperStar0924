@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //请求A数据的异步代码 被promise进行处理
+        const p1 = new Promise((resolve, reject) => {
+            try {
+                console.log("开始请求A数据");
+                throw new Error("Error:网络出现问题")
+                setTimeout(() => {
+                    console.log("A数据请求成功");
+                    resolve(["laowang", "laoyang"])
+                }, 2000)
+            } catch (e) {
+                console.log("报错了,报错信息是", e);
+                reject("出现错误" + e);
+            }
+        })
+
+        /* 
+           Promise的原型对象上有一个catch方法，专门用来处理失败的promise对象的
+            - 里边只有一个回调函数作为参数
+            - 当调用catch的promise对象状态变为失败的时候，会执行catch中的回调函数，所以catch方法是同步的，catch中的回调函数的是异步的
+            - catch返回值的规则和then的第二个参数的规则一致
+
+
+            总结：then或者catch返回promise状态的总结：
+                - 失败:1. then或者catch中的回调函数只要报错、2. then或者catch中的回调函数中返回失败的promise对象
+                - 成功：默认成功、返回成功promise对象也是成功
+        */
+
+        const p2 = p1.catch((reason) => {
+            console.log("catch的执行");
+            // throw new Error("catch中报错")  
+            // return "hello"
+            return new Promise((resolve, reject) => {
+                reject(222)
+            })
+        })
+
+
+        console.log("p2", p2);
+    </script>
+</body>
+
+</html>

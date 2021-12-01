@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const p1 = new Promise((resolve, reject) => {
+            try {
+                console.log("开始请求A数据");
+                throw new Error("Error:网络出现问题")
+                setTimeout(() => {
+                    console.log("A数据请求成功");
+                    resolve(["laowang", "laoyang"])
+                }, 2000)
+            } catch (e) {
+                console.log("报错了,报错信息是", e);
+                reject("出现错误" + e);
+            }
+        })
+
+        //1.then或者catch中不书写回调函数，而是书写了其他值，则then或者catch的的promise实例的状态和值，和调用then或者catch的promise实例一致
+        /* const p2 = p1.then(1);
+        console.log("p2", p2); */
+
+        /* const p2 = p1.catch(1);
+        console.log("p2", p2); */
+
+
+        //2.如果失败的promise实例调用then  或者 成功的promise实例调用catch ,then和catch都会执行，但是不会执行内部的回调函数，并直接穿透
+        const p2 = p1.catch(() => {
+            return new Promise()
+        })
+        console.log("p2", p2);
+    </script>
+</body>
+
+</html>
