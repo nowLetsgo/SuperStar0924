@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            同时请求A B C，完成以后告诉我们
+        */
+        let num = 0;
+        const re = {};
+        new Promise((resolve, reject) => {
+            try {
+                console.log("开始请求A数据。。。。");
+                // throw new Error("A数据出错？？？？");
+                setTimeout(() => {
+                    console.log("A请求成功");
+                    //假设请求回来的数据A
+                    const dataA = {
+                        name: "laonie"
+                    }
+                    resolve(dataA);
+
+                    num++;
+                    Object.assign(re, dataA);
+                    if (num === 3) {
+                        console.log("全部完成", re);
+                    }
+                }, 1000)
+            } catch (e) {
+                reject(e);
+            }
+        })
+
+        new Promise((resolve, reject) => {
+            try {
+                console.log("开始请求B数据。。。。");
+                // throw new Error("B数据出错？？？？");
+                setTimeout(() => {
+                    console.log("B请求成功");
+                    //假设请求回来的数据B
+                    const dataB = {
+                        age: 18
+                    }
+                    resolve(dataB)
+                    num++;
+                    Object.assign(re, dataB);
+                    if (num === 3) {
+                        console.log("全部完成", re);
+                    }
+                }, 2000)
+            } catch (e) {
+                reject(e);
+            }
+        })
+
+
+        new Promise((resolve, reject) => {
+            try {
+                console.log("开始请求C数据。。。。");
+                // throw new Error("C数据出错？？？？");
+                setTimeout(() => {
+                    console.log("C请求成功");
+                    //假设请求回来的数据C
+                    const dataC = {
+                        sex: "nan"
+                    }
+                    resolve(dataC)
+                    num++;
+                    Object.assign(re, dataC);
+                    if (num === 3) {
+                        console.log("全部完成", re);
+                    }
+                }, 1500)
+            } catch (e) {
+                reject(e);
+            }
+        })
+    </script>
+</body>
+
+</html>

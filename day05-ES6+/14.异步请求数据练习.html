@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            先请求A 再请求B 再请求C
+        */
+        new Promise((resolve, reject) => {
+                try {
+                    console.log("开始请求A数据。。。。");
+                    // throw new Error("A数据出错？？？？");
+                    setTimeout(() => {
+                        console.log("A请求成功");
+                        //假设请求回来的数据A
+                        const dataA = {
+                            name: "laonie"
+                        }
+                        resolve(dataA)
+                    }, 1000)
+                } catch (e) {
+                    reject(e);
+                }
+            })
+            .then(value => {
+                return new Promise((resolve, reject) => {
+                    try {
+                        console.log("开始请求B数据。。。。");
+                        // throw new Error("B数据出错？？？？");
+                        setTimeout(() => {
+                            console.log("B请求成功");
+                            //假设请求回来的数据B
+                            const dataB = {
+                                age: 18
+                            }
+                            resolve({
+                                ...dataB,
+                                ...value
+                            })
+                        }, 1000)
+                    } catch (e) {
+                        reject(e);
+                    }
+                });
+            })
+            .then(value => {
+                return new Promise((resolve, reject) => {
+                    try {
+                        console.log("开始请求C数据。。。。");
+                        // throw new Error("C数据出错？？？？");
+                        setTimeout(() => {
+                            console.log("C请求成功");
+                            //假设请求回来的数据C
+                            const dataC = {
+                                sex: '男'
+                            }
+                            resolve({
+                                ...dataC,
+                                ...value
+                            })
+                        }, 1000)
+                    } catch (e) {
+                        reject(e);
+                    }
+                });
+            })
+            .then(value => {
+                console.log("请求的值成功，值为", value);
+            })
+            .catch(reason => {
+                console.log("请求中出现错误", reason);
+            })
+    </script>
+</body>
+
+</html>
