@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Promise实例化的时候接受一个回调函数作为参数，这个回调函数还要接受两个参数分别是resolve函数，和reject函数
+                - resolve函数：当异步代码执行成功后调用，函数的参数就是成功后需要给promise实例的值
+                - reject函数：当异步代码执行失败后调用，函数的参数就是失败后需要给promise实例的失败信息
+
+            promise实例有两个属性：
+                - PromiseState：当前promise实例的状态
+                    - pending：正在进行中，初始状态
+                    - fulfilled/resolved :成功状态，此状态只能由pending转变而来
+                    - rejected：失败状态，此状态只能由pending转变而来
+                - PromiseResult：当前promise实例得到的结果
+                    - 调用resolve或者reject函数传递的参数
+        
+        */
+
+        const p1 = new Promise((resolve, reject) => {
+            //resolve和reject是回调函数调用的时候，调用者传递的两个函数，当在当前回调函数内调用这两个函数的时候，可以处理一些事情
+            console.log(resolve, reject);
+            //把异步代码写在了promise中，promise实例需要对异步代码的结果得到反馈
+            setTimeout(() => {
+                console.log("异步请求");
+                //当请求成功，请调用resolve方法，则当前promise实例的状态就会变成成功状态fulfilled
+                //resolve中传递的参数，就是给promise实例的一个值
+                resolve({
+                    name: "laowang"
+                });
+
+                //当请求失败，请调用reject方法，则当前promise实例状态会变成失败状态rejected
+                //reject传递的参数，就是给promise实例的一个值（一般是错误信息）
+                reject("网络出错：超时请求");
+            }, 2000)
+        })
+
+        console.log("p1", p1);
+        //
+    </script>
+</body>
+
+</html>

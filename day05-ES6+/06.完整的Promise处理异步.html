@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const p1 = new Promise((resolve, reject) => {
+
+            try {
+                console.log("A数据开始请求。。。");
+                //模拟报错，抛出一个异常
+                // throw new Error("您的请求因为您的人品失败了")
+
+                //异步请求A数据
+                setTimeout(() => {
+                    console.log("A数据请求成功！！！");
+                    //得到请求的数据
+                    const dataA = ["laoyang", "laowang", "laonie"];
+                    //调用resolve方法 并把数据传递出去
+                    resolve(dataA);
+                }, 2000)
+            } catch (e) {
+                console.log("请求出错", e);
+                //调用reject 告诉promise实例，当前请求出错
+                reject(e);
+            }
+
+            //下边这种异常捕获写法也是ok的
+            /* //异步请求A数据
+            setTimeout(() => {
+                try {
+                    // throw new Error("您的请求因为您的人品失败了")
+                    console.log("A数据请求成功！！！");
+                    //得到请求的数据
+                    const dataA = ["laoyang", "laowang", "laonie"];
+                    //调用resolve方法 并把数据传递出去
+                    resolve(dataA);
+                } catch (e) {
+                    reject(e);
+                }
+            }, 2000) */
+
+        })
+        console.log("p1", p1);
+
+
+
+        //异常处理语句
+        /*  try {
+             const a = 1;
+             a = 2;
+         } catch (e) {
+             console.log(e);
+         }
+         console.log(1); */
+    </script>
+</body>
+
+</html>
