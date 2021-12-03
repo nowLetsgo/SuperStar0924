@@ -13,9 +13,7 @@
         /* 
             同时请求A B C，完成以后告诉我们
         */
-        let num = 0;
-        const re = {};
-        new Promise((resolve, reject) => {
+        const p1 = new Promise((resolve, reject) => {
             try {
                 console.log("开始请求A数据。。。。");
                 // throw new Error("A数据出错？？？？");
@@ -26,19 +24,13 @@
                         name: "laonie"
                     }
                     resolve(dataA);
-
-                    num++;
-                    Object.assign(re, dataA);
-                    if (num === 3) {
-                        console.log("全部完成", re);
-                    }
                 }, 1000)
             } catch (e) {
                 reject(e);
             }
         })
 
-        new Promise((resolve, reject) => {
+        const p2 = new Promise((resolve, reject) => {
             try {
                 console.log("开始请求B数据。。。。");
                 // throw new Error("B数据出错？？？？");
@@ -49,18 +41,13 @@
                         age: 18
                     }
                     resolve(dataB)
-                    num++;
-                    Object.assign(re, dataB);
-                    if (num === 3) {
-                        console.log("全部完成", re);
-                    }
                 }, 2000)
             } catch (e) {
                 reject(e);
             }
         })
 
-        new Promise((resolve, reject) => {
+        const p3 = new Promise((resolve, reject) => {
             try {
                 console.log("开始请求C数据。。。。");
                 // throw new Error("C数据出错？？？？");
@@ -71,16 +58,30 @@
                         sex: "nan"
                     }
                     resolve(dataC)
-                    num++;
-                    Object.assign(re, dataC);
-                    if (num === 3) {
-                        console.log("全部完成", re);
-                    }
                 }, 1500)
             } catch (e) {
                 reject(e);
             }
         })
+
+
+        /* 
+            Promise.all():
+                - 接受一个数组，数组中放入需要处理的promise实例
+                - 当所有的promise实例全部执行成功的时候，all方法返回成功的promise实例，值为内部所有promise实例的成功值组成的数组
+                - 当all方法中有任何一个promise实例出现失败，则all方法直接返回失败，值为内部失败promise实例的值
+
+        
+        */
+        const re = Promise.all([p1, p2, p3]);
+        console.log("re", re);
+
+        re.then(value => {
+                console.log("所有promise成功，值为", value);
+            })
+            .catch(reason => {
+                console.log("至少有一个promise实例失败，失败信息是", reason);
+            })
     </script>
 </body>
 
