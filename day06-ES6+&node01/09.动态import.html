@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            import方法：
+                - import方法是用来做js模块按需引入的
+                - import引入是异步的,返回promise对象
+        */
+
+
+        document.onclick = async function () {
+            //当点击的时候 按需加载需要的01.js文件 用async和await
+            const re = await import('./01.js');
+            console.log(re);
+            console.log("01.js引入成功");
+
+            /* //写法2:用promise和then
+            const re = import('./01.js');
+            re.then(() => {
+                console.log("01.js引入成功");
+            }) */
+        }
+    </script>
+</body>
+
+</html>

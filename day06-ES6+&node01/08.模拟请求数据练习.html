@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        async function getData() {
+            console.log("开始请求A数据。。。");
+            const dataA = await new Promise((resolve, reject) => {
+                try {
+                    // throw new Error("A失败");
+                    setTimeout(() => {
+                        console.log("A成功！！！");
+                        const dataA = {
+                            name: "laoyang"
+                        };
+                        resolve(dataA);
+                    }, 1500)
+                } catch (e) {
+                    reject(e);
+                }
+            })
+
+            console.log("开始请求B数据。。。");
+            const dataB = await new Promise((resolve, reject) => {
+                try {
+                    // throw new Error("B失败");
+                    setTimeout(() => {
+                        console.log("B成功！！！");
+                        const dataB = {
+                            age: "18"
+                        };
+                        resolve({
+                            ...dataB,
+                            ...dataA
+                        });
+                    }, 1500)
+                } catch (e) {
+                    reject(e);
+                }
+            })
+
+            console.log("开始请求C数据。。。");
+            const dataC = await new Promise((resolve, reject) => {
+                try {
+                    throw new Error("C失败");
+                    setTimeout(() => {
+                        console.log("C成功！！！");
+                        const dataC = {
+                            sex: "nan"
+                        };
+                        resolve({
+                            ...dataC,
+                            ...dataB
+                        });
+                    }, 1500)
+                } catch (e) {
+                    reject(e);
+                }
+            })
+
+            return dataC;
+        }
+
+        const re = getData();
+        console.log(re);
+
+        re.then(value => {
+            console.log("所有数据请求完毕", value);
+        }).catch(reason => {
+            console.log("请求中出错", reason);
+        })
+    </script>
+</body>
+
+</html>
