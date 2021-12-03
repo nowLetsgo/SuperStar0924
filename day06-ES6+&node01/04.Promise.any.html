@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            同时请求A B C，完成以后告诉我们
+        */
+        const p1 = new Promise((resolve, reject) => {
+            try {
+                console.log("开始请求A数据。。。。");
+                throw new Error("A数据出错？？？？");
+                setTimeout(() => {
+                    console.log("A请求成功");
+                    //假设请求回来的数据A
+                    const dataA = {
+                        name: "laonie"
+                    }
+                    resolve(dataA);
+                }, 1000)
+            } catch (e) {
+                reject(e);
+            }
+        })
+
+        const p2 = new Promise((resolve, reject) => {
+            try {
+                console.log("开始请求B数据。。。。");
+                throw new Error("B数据出错？？？？");
+                setTimeout(() => {
+                    console.log("B请求成功");
+                    //假设请求回来的数据B
+                    const dataB = {
+                        age: 18
+                    }
+                    resolve(dataB)
+                }, 2000)
+            } catch (e) {
+                reject(e);
+            }
+        })
+
+        const p3 = new Promise((resolve, reject) => {
+            try {
+                console.log("开始请求C数据。。。。");
+                throw new Error("C数据出错？？？？");
+                setTimeout(() => {
+                    console.log("C请求成功");
+                    //假设请求回来的数据C
+                    const dataC = {
+                        sex: "nan"
+                    }
+                    resolve(dataC)
+                }, 1500)
+            } catch (e) {
+                reject(e);
+            }
+        })
+
+        /* 
+            Promise.any:
+                - 可以监听多个promise，返回一个promise实例，实例的状态和值永远和第一个成功状态的promise状态和值一致
+                - 如果所有的promise全部失败，则返回一个新的错误类型：AggregateError: All promises were rejected，primise状态是失败的
+        */
+
+        const re = Promise.any([p1, p2, p3]);
+        console.log(re);
+    </script>
+</body>
+
+</html>

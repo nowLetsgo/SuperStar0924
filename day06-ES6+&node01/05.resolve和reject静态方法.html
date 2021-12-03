@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Promise.resolve():
+                - 快速的得到一个成功状态的promise对象，参数默认是这个promise对象的值
+                - 如果resolve静态方法的参数是一个promise实例，则resolve返回的promise实例和内部函数的promise实例保持一致
+        
+        */
+        const p1 = Promise.resolve(1);
+        console.log("p1", p1);
+
+        const p2 = Promise.resolve(new Promise((resolve, reject) => {
+            reject("1")
+        }));
+        console.log("p2", p2);
+
+
+
+        /* 
+            Promise.reject():
+                - 快速的得到一个失败状态的promise对象，参数是这个promise对象的值
+                - 如果reject静态方法内部传递一个promise实例，则reject方法仍然永远返回失败的，值是这个promise实例
+        
+        */
+
+        const p3 = Promise.reject("err");
+        console.log("p3", p3);
+
+        const p4 = Promise.reject(new Promise((resolve, reject) => {
+            reject(1);
+        }));
+        console.log("p4", p4);
+    </script>
+</body>
+
+</html>

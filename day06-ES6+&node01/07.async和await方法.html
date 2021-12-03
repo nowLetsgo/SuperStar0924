@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            async和await：  
+                - 专门用来解决异步编程问题，是终极解决方案，用同步表达异步操作
+                - async是用来声明某个函数是异步函数（认为是generator中的*）,await是等待一个异步的执行（相当于是yield）
+
+            await的使用：
+                - await只能等待promise实例，其他的一概不等（但是await语句后的所有都变成了异步）
+                - await等待的promise实例变成成功状态了，则继续向下之后await语句后的内容，await返回当前成功promise实例的值
+                - 当await等待的是失败的promise实例的时候，则直接退出当前async函数，不再执行函数的其他语句
+
+            async函数的返回值：
+                - 默认返回成功的promise实例，值为async函数内部return的值
+                - 当async中的await等待的是失败的promise实例的时候，async函数直接返回失败的promise实例，值为内部失败promise实例的值
+                - 当async函数内部报错，则async函数直接返回失败的promise实例，只为错误信息
+                
+            
+        */
+
+
+        async function fn() {
+            // throw new Error("err")
+            const re = await new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log(1);
+                    resolve("我成功啦")
+                    // reject("我失败了")
+                }, 2000);
+            })
+
+            console.log(re);
+
+            console.log(2);
+
+            return "hello"; //async函数的返回值，是async返回的promise实例的值
+        }
+        const result = fn();
+        console.log(result);
+
+        console.log(3);
+
+
+        /* //await如果等待的不是promise对象，则一概不等待，然后await整个语句后所有的代码都变成了异步代码了
+        async function fn() {
+            await setTimeout(() => {
+                console.log(1);
+            }, 2000);
+
+            console.log(2);
+        }
+        fn();
+
+        console.log(3); */
+
+
+        /* //注意！~！！！！！！
+        //1 3 2
+        //1的打印并不是异步，因为await a  是先执行a 然后再await，所以a的执行是同步的
+        async function fn() {
+            await console.log(1);
+
+            console.log(2);
+        }
+        fn();
+
+        console.log(3); */
+    </script>
+</body>
+
+</html>

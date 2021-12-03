@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1
+        Promise.resolve(1) //成功：1
+            .then(2) //穿透：成功：1
+            .then(Promise.resolve(3)) //穿透：成功：1
+            .then(console.log) //log被作为了then的成功的回调函数，回调函数接受了成功状态的promise对象的值：1
+
+
+        //2
+        Promise.resolve("foo") //成功foo
+            .then(Promise.resolve("hoo")) //穿透 成功foo
+            .then((value) => {
+                console.log(value); //foo
+            })
+
+        //3
+        Promise.resolve(1) //成功 1
+            .then(() => {
+                return 2
+            }) //成功：2
+            .then(Promise.resolve(3)) //穿透 成功2
+            .then(console.log) //2
+
+        //4
+        Promise.resolve(1) //成功1
+            .then(() => {
+                return 2
+            }) //成功2
+            .then(() => {
+                return Promise.resolve(3)
+            }) //成功 3
+            .then(console.log) //3
+
+
+        //5
+        new Promise((resolve, reject) => {
+                reject(1)
+            }) //失败 1
+            .then(value => {
+                console.log('成功', value);
+            }, reason => {
+                console.log('失败', reason); //打印：失败 1
+            }) //成功 undefined
+            .then(value => {
+                console.log('成功', value); //打印：成功 undefined
+            }, reason => {
+                console.log('失败', reason);
+            }) //成功 undefined
+            .catch(reason => console.log('失败', reason))
+
+        //6
+        new Promise((resolve, reject) => {
+                reject(1)
+            }) //失败：1 
+            .then(value => {
+                console.log('成功', value);
+            }) //穿透：失败1
+            .then(value => {
+                console.log('成功', value);
+            }) //穿透：失败1
+            .catch(reason => console.log('失败', reason)) //打印：失败1
+
+
+
+        //7
+        new Promise((resolve, reject) => {
+                reject(1)
+            }) //失败：1
+            .then(value => {
+                console.log('成功', value);
+            }) //穿透：失败1
+            .then(value => {
+                console.log('成功', value);
+            }, reason => {
+                console.log('失败hhhhh', reason); //打印：失败hhhh 1
+            }) //成功 undefined
+            .catch(reason => console.log('失败', reason))
+
+
+        //8
+        //顺序：1 2 4 3
+        const promise = new Promise((resolve, reject) => {
+            console.log(1) //1
+            resolve()
+            console.log(2) //2
+        }) //成功 undefined
+        promise.then(() => {
+            console.log(3) //打印3
+        })
+        console.log(4) //打印4
+
+
+        //9
+        const promise = new Promise((resolve, reject) => {
+            resolve('1')
+            reject('error')
+            resolve('2')
+        }) //成功1
+
+        promise
+            .then((data) => {
+                console.log(data) //1
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+
+        //10
+        Promise.resolve(1) //成功1
+            .then((data) => {
+                console.log(data) //打印1
+                return 2
+            }) //成功 2
+            .catch((err) => {
+                return 3
+            }) //穿透
+            .then((data) => {
+                console.log(data) //2
+            })
+    </script>
+</body>
+
+</html>

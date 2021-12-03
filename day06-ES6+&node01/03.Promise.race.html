@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            同时请求A B C，完成以后告诉我们
+        */
+        const p1 = new Promise((resolve, reject) => {
+            try {
+                console.log("开始请求A数据。。。。");
+                // throw new Error("A数据出错？？？？");
+                setTimeout(() => {
+                    console.log("A请求成功");
+                    //假设请求回来的数据A
+                    const dataA = {
+                        name: "laonie"
+                    }
+                    resolve(dataA);
+                }, 1000)
+            } catch (e) {
+                reject(e);
+            }
+        })
+
+        const p2 = new Promise((resolve, reject) => {
+            try {
+                console.log("开始请求B数据。。。。");
+                // throw new Error("B数据出错？？？？");
+                setTimeout(() => {
+                    console.log("B请求成功");
+                    //假设请求回来的数据B
+                    const dataB = {
+                        age: 18
+                    }
+                    resolve(dataB)
+                }, 2000)
+            } catch (e) {
+                reject(e);
+            }
+        })
+
+        const p3 = new Promise((resolve, reject) => {
+            try {
+                console.log("开始请求C数据。。。。");
+                // throw new Error("C数据出错？？？？");
+                setTimeout(() => {
+                    console.log("C请求成功");
+                    //假设请求回来的数据C
+                    const dataC = {
+                        sex: "nan"
+                    }
+                    resolve(dataC)
+                }, 1500)
+            } catch (e) {
+                reject(e);
+            }
+        })
+
+        /* 
+            Promise.race:
+                - 可以监听多个promise，监听所有实例中改变得到结果最快那个promise实例
+                - 无论速度最快的promise实例是成功还是失败，race方法返回的promise实例的状态和值 和 最快的promise实例保持一致
+                
+        */
+
+        const re = Promise.race([p1, p2, p3]);
+        console.log(re);
+    </script>
+</body>
+
+</html>
