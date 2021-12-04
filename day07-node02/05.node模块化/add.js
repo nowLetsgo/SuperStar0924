@@ -1,10 +1,12 @@
 function add(a, b) {
-    return a + b
+    console.log(a + b);
 }
 
 function fn() {
     console.log("我是附加的");
 }
+
+console.log("我是add模块内部打印的");
 
 /* 
     暴露一个模块的方法：    
@@ -34,3 +36,11 @@ module.exports = add; */
 exports.add = add; */
 
 // exports = add;
+
+
+//暴露了一个对象，对象内有一个属性add
+// module.exports.add = add;
+
+
+//直接暴露add出去
+module.exports = add;
