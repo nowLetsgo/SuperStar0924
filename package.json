@@ -5,7 +5,8 @@
   "author": "nowLetsgo <lipeihua0922@163.com>",
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "3"
+    "bootstrap": "3",
+    "md5": "^2.3.0"
   },
   "devDependencies": {
     "zepto": "^1.2.0"
