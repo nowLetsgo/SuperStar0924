@@ -1,0 +1,19 @@
+{
+  "name": "SuperStar0924",
+  "version": "1.0.0",
+  "description": "- github : https://github.com/nowLetsgo/SuperStar0924.git",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^2.1.3",
+    "number-precision": "^1.5.1"
+  },
+  "devDependencies": {
+    "bootstrap": "^3.4.1"
+  }
+}
