@@ -3,9 +3,6 @@
  */
 
 //1.引入mongoose模块
-const {
-    LongWithoutOverridesClass
-} = require("bson");
 const mongoose = require("mongoose");
 
 //2.mongoose提供了一个connect方法进行连接数据库,connect方法的参数就是数据库的地址
