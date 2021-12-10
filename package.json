@@ -1,14 +1,16 @@
 {
   "name": "SuperStar0924",
   "version": "1.0.0",
+  "description": "- github : https://github.com/nowLetsgo/SuperStar0924.git",
   "main": "index.js",
-  "author": "nowLetsgo <lipeihua0922@163.com>",
-  "license": "MIT",
-  "dependencies": {
-    "bootstrap": "3",
-    "md5": "^2.3.0"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {
-    "zepto": "^1.2.0"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "md5": "^2.3.0",
+    "mongoose": "^6.1.0"
   }
 }
