@@ -3,6 +3,9 @@
  */
 
 //1.引入mongoose模块
+const {
+    LongWithoutOverridesClass
+} = require("bson");
 const mongoose = require("mongoose");
 
 //2.mongoose提供了一个connect方法进行连接数据库,connect方法的参数就是数据库的地址
@@ -49,11 +52,34 @@ const studentsSchema = new mongoose.Schema({
         default: new Date //默认时间，不要加调用
     }
 })
-console.log("studentsSchema", studentsSchema);
+// console.log("studentsSchema", studentsSchema);
 
 /* 
  * 根据已经设置好的schema约束对象，创建一个集合Model对象
  * 使用mongoose模块的model方法，传入集合名和对应的约束对象作为参数
  */
 const studentsModel = mongoose.model("students", studentsSchema);
-console.log("studentsModel", studentsModel);
+// console.log("studentsModel", studentsModel);
+
+
+
+/* 
+ * 改：mongoose的集合提供了updateMany和updateOne两个方法可以对数据进行更新
+ * 更新以后，返回一个promise对象，包含更新结果\
+ * 可以根据返回的结果对象中的modifiedCount属性的值来判断是否有更新
+ */
+const updateResult = studentsModel.updateMany({
+    age: {
+        $gte: 18
+    }
+}, {
+    $set: {
+        age: 40
+    }
+})
+
+updateResult.then(value => {
+    console.log(value);
+}, reason => {
+    console.log(reason);
+})

@@ -3,6 +3,9 @@
  */
 
 //1.引入mongoose模块
+const {
+    LongWithoutOverridesClass
+} = require("bson");
 const mongoose = require("mongoose");
 
 //2.mongoose提供了一个connect方法进行连接数据库,connect方法的参数就是数据库的地址
@@ -49,11 +52,32 @@ const studentsSchema = new mongoose.Schema({
         default: new Date //默认时间，不要加调用
     }
 })
-console.log("studentsSchema", studentsSchema);
+// console.log("studentsSchema", studentsSchema);
 
 /* 
  * 根据已经设置好的schema约束对象，创建一个集合Model对象
  * 使用mongoose模块的model方法，传入集合名和对应的约束对象作为参数
  */
 const studentsModel = mongoose.model("students", studentsSchema);
-console.log("studentsModel", studentsModel);
+// console.log("studentsModel", studentsModel);
+
+
+/* 
+ * 查：mongoose的集合有两个方法可以查询数据库：find和findOne
+ * find查找有一个回调函数，当然也可以返回一个promise对象,在then中可以得到查询的结果
+ * find查找在对比的时候，就算的对象类型，也能直接比较是否相等（不像js中需要对比引用地址）
+ * findOne查不到返回null，find查不到返回空数组 
+ */
+
+const findResult = studentsModel.findOne({
+    $where: function () {
+        return this.hobby.includes("抽烟")
+    }
+})
+
+// console.log("findResult", findResult);
+findResult.then(value => {
+    console.log(value)
+}, reason => {
+    console.log(reason)
+})

@@ -3,6 +3,9 @@
  */
 
 //1.引入mongoose模块
+const {
+    LongWithoutOverridesClass
+} = require("bson");
 const mongoose = require("mongoose");
 
 //2.mongoose提供了一个connect方法进行连接数据库,connect方法的参数就是数据库的地址
@@ -49,11 +52,55 @@ const studentsSchema = new mongoose.Schema({
         default: new Date //默认时间，不要加调用
     }
 })
-console.log("studentsSchema", studentsSchema);
+// console.log("studentsSchema", studentsSchema);
 
 /* 
  * 根据已经设置好的schema约束对象，创建一个集合Model对象
  * 使用mongoose模块的model方法，传入集合名和对应的约束对象作为参数
  */
 const studentsModel = mongoose.model("students", studentsSchema);
-console.log("studentsModel", studentsModel);
+// console.log("studentsModel", studentsModel);
+
+
+/* 
+ * mongoose给数据库的某个集合的新增数据方法
+ * 给某个集合调用create方法,即可新增数据，create方法内的写法和mongoDB语句insert内部写法一致
+ * create方法是一个异步操作，它的第二个参数是一个回调函数，当新增成功之后会调用回调函数
+ * 但是如果不写回调函数的话，craete会返回一个promise对象,promise对象成功的值就是新增的文档
+ 
+*/
+
+//新增一条
+/* const createResult = studentsModel.create({
+    name: "lao王",
+    age: 18,
+    sex: "男",
+    hobby: ["吃饭", "喝水"],
+    createTime: new Date()
+})
+console.log("createResult", createResult);
+createResult.then(value => {
+    console.log("新增成功", value);
+}, reason => {
+    console.log("新增失败", reason);
+}) */
+
+//新增多条
+const createResult = studentsModel.create([{
+    name: "lao张",
+    age: 20,
+    sex: "女",
+    hobby: ["喝酒", "学习"],
+}, {
+    name: "laoli",
+    age: 18,
+    sex: "男",
+    hobby: ["看书", "学习"],
+    createTime: new Date()
+}])
+console.log("createResult", createResult);
+createResult.then(value => {
+    console.log("新增成功", value);
+}, reason => {
+    console.log("新增失败", reason);
+})

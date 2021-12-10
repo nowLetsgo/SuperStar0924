@@ -24,7 +24,7 @@ mongoose.connection.once("open", () => {
 /* 
  * 创建schema集合约束对象
  */
-const studentsSchema = {
+const studentsSchema = new mongoose.Schema({
     // name:String//限制name字段必须是字符串类型
     name: {
         type: String, //字符串类型
@@ -43,8 +43,8 @@ const studentsSchema = {
         type: [String], //类型是一个数组，数组的值是一个字符串
         default: ["无"]
     },
-    createTime:{
-        type:Date,
-        default:new Date//默认时间，不要加调用
+    createTime: {
+        type: Date,
+        default: new Date //默认时间，不要加调用
     }
-}
+})
