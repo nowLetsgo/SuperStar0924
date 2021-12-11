@@ -62,7 +62,7 @@ const studentsModel = mongoose.model("students", studentsSchema);
 
 /* 
  * 改：mongoose的集合提供了updateMany和updateOne两个方法可以对数据进行更新
- * 更新以后，返回一个promise对象，包含更新结果\
+ * 更新以后，返回一个promise对象，包含更新结果
  * 可以根据返回的结果对象中的modifiedCount属性的值来判断是否有更新
  */
 const updateResult = studentsModel.updateMany({

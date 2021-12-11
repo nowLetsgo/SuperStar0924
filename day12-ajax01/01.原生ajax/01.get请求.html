@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="###">
+        <input type="text" placeholder="用户名" id="user">
+        <input type="text" placeholder="密码" id="pass">
+        <button id="btn">登录</button>
+    </form>
+    <script>
+        const oUser = document.getElementById('user')
+        const oPass = document.getElementById('pass')
+        const oBtn = document.getElementById('btn')
+
+        oBtn.onclick = function (e) {
+            /* 
+                接口文档： 
+                - 请求地址：/login
+                - 请求方式：get
+                - 参数：
+                    - user:用户名
+                    - pass：密码
+                - 响应(json对象类型)
+                    - code:当前处理的状态码 10000代表登录成功  100001代表密码或者账号错误
+                    - msg:结果字符串
+            */
+
+            // 1. 实例化XMLHttpRequest,得到一个实例对象（因为很多ajax方法都在原型对象上，只有实例化对象才能访问原型对象）
+            const xhr = new XMLHttpRequest();
+
+            // 2. 打开路径，使用open方法
+            //open方法3个参数：1.请求方式 2.接口地址（get请求的数据在地址上）3.是否异步
+            xhr.open("GET", `http://192.168.17.62:3000/login?user=${oUser.value}&pass=${oPass.value}`, true);
+
+            //3.发送请求使用send方法，send的参数是要发送的数据，如果是get请求，则send中不写参数或者null即可
+            xhr.send();
+
+            //4.在请求的过程中，有一个请求状态码xhr.readystate,请求的状态改变，状态码也随之改变
+            //我们可以对这个状态码绑定一个事件监听，就可以得知最新的进展
+            //xhr.readyState:0:正在准备 1:open方法已经调用 2:send方法已经调用  3:正在请求数据（如果数据量小的话，则可能已经拿到数据了） 4:数据已经拿到
+            //onreadystatechange事件可以对请求状态码进行监听
+            xhr.onreadystatechange = function () {
+                //当请求状态码xhr.readyState为4，并且响应状态码xhr.status为2XX的时候 则代表请求成功
+                if (xhr.readyState === 4 && (xhr.status >= 200 && xhr.status <= 299)) {
+                    console.log("请求成功");
+                }
+            }
+
+
+            return false;
+        }
+    </script>
+</body>
+
+</html>
