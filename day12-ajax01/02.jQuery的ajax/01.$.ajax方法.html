@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.js"></script>
+</head>
+
+<body>
+	<form action="###" id="form">
+		<input type="text" placeholder="用户名" id="user">
+		<input type="text" placeholder="密码" id="pass">
+		<button id="btn">登录</button>
+	</form>
+	<script>
+		$(function () {
+			/* 
+			    form表单提交事件：可以绑定给btn按钮的click事件，也可以绑定给form标签submit事件
+			*/
+
+
+			/* 
+				get请求：
+					- get请求的时候，数据可以放在url上，也可以放在data属性（form表单格式和对象格式），最终还是把data上的数据转为了查询字符串拼接在了url上
+			
+			*/
+			/* $("#form").submit(function () {
+				//$.ajax方法可以发送请求，参数是配置对象
+				$.ajax({
+					type: "get", //请求的类型
+					// url: `/login?user=${$("#user").val()}&pass=${$("#pass").val()}`, //请求的地址
+					url: `/login`, //请求的地址
+					cache: false, //控制是否读取缓存
+					// data: `user=${$("#user").val()}&pass=${$("#pass").val()}`, //我们向服务端发送的数据
+					data: {
+						user: $("#user").val(),
+						pass: $("#pass").val()
+					}, //我们向服务端发送的数据
+					dataType: "json", //我们期望请求的结果类型
+					// headers:,//设置请求头
+					success(data) { //请求成功的回调函数，参数是请求回来的数据
+						console.log(data);
+					}
+				}) */
+
+
+
+			/* 
+				Post请求
+			*/
+			$("#form").submit(function () {
+				//$.ajax方法可以发送请求，参数是配置对象
+				$.ajax({
+					type: "post", //请求的类型
+					url: `/login`, //请求的地址
+					cache: false, //控制是否读取缓存
+					data: `user=${$("#user").val()}&pass=${$("#pass").val()}`, //我们向服务端发送的数据
+					// data: {
+					// 	user: $("#user").val(),
+					// 	pass: $("#pass").val()
+					// }, //我们向服务端发送的数据
+					dataType: "json", //我们期望请求的结果类型
+					// headers:,//设置请求头
+					success(data) { //请求成功的回调函数，参数是请求回来的数据
+						console.log(data);
+					}
+				})
+
+				return false;
+			})
+		})
+	</script>
+</body>
+
+</html>
