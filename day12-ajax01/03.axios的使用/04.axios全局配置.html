@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+
+<body>
+    <form action="###" id="form">
+        <input type="text" placeholder="用户名" id="user">
+        <input type="text" placeholder="密码" id="pass">
+        <button id="btn">登录</button>
+    </form>
+    <script>
+        const oForm = document.getElementById('form')
+        const oUser = document.getElementById('user')
+        const oPass = document.getElementById('pass')
+
+        //全局的 axios 默认值
+        //把所有的axios请求的默认基础路径设置为XXXXX
+        axios.defaults.baseURL = 'http://192.168.17.62:3000';
+
+        axios.get("/login")
+            .then(res => {
+                console.log(res.data);
+            })
+
+        axios.post("/center")
+            .then(res => {
+                console.log(res.data);
+            })
+    </script>
+</body>
+
+</html>

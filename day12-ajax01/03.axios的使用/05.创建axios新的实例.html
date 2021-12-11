@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+
+<body>
+    <form action="###" id="form">
+        <input type="text" placeholder="用户名" id="user">
+        <input type="text" placeholder="密码" id="pass">
+        <button id="btn">登录</button>
+    </form>
+    <script>
+        const oForm = document.getElementById('form')
+        const oUser = document.getElementById('user')
+        const oPass = document.getElementById('pass')
+
+        //创建axios的新的实例 axios.create([config])
+        //得到新的实例可以向axios一样正常的发送请求，并且每个实例可以有自己的专有配置
+        const myAxios = axios.create({
+            //新实例独有的配置
+            baseUrl: "http://192.168.17.62:3000",
+            timeout: 1000,
+            headers: {
+                'X-Custom-Header': 'hello'
+            }
+        })
+        const myAxios2 = axios.create({
+            //新实例独有的配置
+            baseUrl: "http://192.168.17.61:6000",
+            timeout: 1,
+            headers: {
+                'X-Custom-Header': 'world'
+            }
+        })
+
+        myAxios.get("/login")
+            .then(res => {
+                console.log(res.data);
+            })
+
+        myAxios2.post("/center")
+            .then(res => {
+                console.log(res.data);
+            }).catch(reason => {
+                console.log(reason);
+            })
+    </script>
+</body>
+
+</html>

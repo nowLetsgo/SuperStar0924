@@ -12,7 +12,9 @@ app.use("", express.json()) //处理json格式的报文体的
 app.get("/", (req, res) => {
     // const filePath = path.resolve(__dirname, "01.axios基础使用.html")
     // const filePath = path.resolve(__dirname, "02.axios基础使用2.html")
-    const filePath = path.resolve(__dirname, "03.axios提供的请求方法别名.html")
+    // const filePath = path.resolve(__dirname, "03.axios提供的请求方法别名.html")
+    // const filePath = path.resolve(__dirname, "04.axios全局配置.html")
+    const filePath = path.resolve(__dirname, "05.创建axios新的实例.html")
 
 
     res.sendFile(filePath)
@@ -66,6 +68,12 @@ app.post("/login", (req, res) => {
     res.json({
         code: 10001,
         msg: "登录失败"
+    })
+})
+
+app.post("/center", (req, res) => {
+    res.json({
+        user: "laoli"
     })
 })
 
