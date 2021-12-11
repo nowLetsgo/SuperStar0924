@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+
+<body>
+    <form action="###" id="form">
+        <input type="text" placeholder="用户名" id="user">
+        <input type="text" placeholder="密码" id="pass">
+        <button id="btn">登录</button>
+    </form>
+    <script>
+        const oForm = document.getElementById('form')
+        const oUser = document.getElementById('user')
+        const oPass = document.getElementById('pass')
+
+        oForm.onsubmit = function () {
+            /* 
+                axios基础请求：axios({配置})
+            */
+
+            const axiosResult = axios({
+                url: "/login",
+                method: "get", //请求方式 默认get
+                headers: {}, //设置请求头
+                params: { //get请求发送的数据可以放在url地址上，也可以放在params中(发送的时候会自动拼在url上)
+                    user: oUser.value,
+                    pass: oPass.value
+                }
+            })
+
+            console.log(axiosResult);
+            //axios请求返回promise对象，可以用then catch 甚至 async await来进行下一步处理
+            axiosResult.then(value => {
+                /* 
+                    axios成功请求后返回的promise实例的值 结构如下：
+                        - config:axios请求时的配置信息
+                        - data:服务端响应的数据
+                        - headers:响应头
+                        - request:axios底层使用的xhr对象
+                        - status:响应状态码
+                        - statusText:响应的状态短语
+                
+                */
+                console.log(value);
+                console.log(value.data);
+            }).catch(reason => {
+                console.log(reason);
+            })
+            return false;
+        }
+    </script>
+</body>
+
+</html>

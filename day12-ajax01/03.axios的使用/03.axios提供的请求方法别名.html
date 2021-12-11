@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+
+<body>
+    <form action="###" id="form">
+        <input type="text" placeholder="用户名" id="user">
+        <input type="text" placeholder="密码" id="pass">
+        <button id="btn">登录</button>
+    </form>
+    <script>
+        const oForm = document.getElementById('form')
+        const oUser = document.getElementById('user')
+        const oPass = document.getElementById('pass')
+
+        oForm.onsubmit = function () {
+            /* 
+                axios为方便起见，为所有支持的请求方法提供了别名
+                    - axios.get(url[,config])
+                    - axios.post(url[,data,[config]])
+            
+            */
+
+
+            //1.axios.get()使用
+            // axios.get("/login?user=laoli&pass=123")
+            /* axios.get("/login", {
+                    params: {
+                        user: oUser.value,
+                        pass: oPass.value
+                    }
+                })
+                .then(value => {
+                    const {
+                        data
+                    } = value;
+                    console.log(data);
+                }).catch(reason => {
+                    console.log(reason);
+                }) */
+
+
+            //2.axios.post()使用
+            axios.post("/login", {
+                    user: oUser.value,
+                    pass: oPass.value
+                }, {
+                    //config对象
+                })
+                .then(value => {
+                    const {
+                        data
+                    } = value;
+                    console.log(data);
+                }).catch(reason => {
+                    console.log(reason);
+                })
+            return false;
+        }
+    </script>
+</body>
+
+</html>
