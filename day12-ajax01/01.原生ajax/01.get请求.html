@@ -32,12 +32,15 @@
                     - msg:结果字符串
             */
 
+            // 《注意》delete请求方式写法和get请求方式写法一致
+
             // 1. 实例化XMLHttpRequest,得到一个实例对象（因为很多ajax方法都在原型对象上，只有实例化对象才能访问原型对象）
             const xhr = new XMLHttpRequest();
 
             // 2. 打开路径，使用open方法
             //open方法3个参数：1.请求方式 2.接口地址（get请求的数据在地址上）3.是否异步
-            xhr.open("GET", `http://192.168.17.62:3000/login?user=${oUser.value}&pass=${oPass.value}`, true);
+            //在get请求的url地址上会书写一个时间戳，防止低版本ie读取缓存
+            xhr.open("GET", `/login?user=${oUser.value}&pass=${oPass.value}&_=${Date.now()}`, true);
 
             //3.发送请求使用send方法，send的参数是要发送的数据，如果是get请求，则send中不写参数或者null即可
             xhr.send();
@@ -49,7 +52,11 @@
             xhr.onreadystatechange = function () {
                 //当请求状态码xhr.readyState为4，并且响应状态码xhr.status为2XX的时候 则代表请求成功
                 if (xhr.readyState === 4 && (xhr.status >= 200 && xhr.status <= 299)) {
-                    console.log("请求成功");
+                    //在xhr对象上有xhr.responseXML和xhr.responseText两个属性，分别用来接收服务端的文本格式和xml格式的响应
+                    console.log(xhr.responseText);
+                    const dataStr = xhr.responseText;
+                    const data = JSON.parse(dataStr);
+                    console.log(data);
                 }
             }
 

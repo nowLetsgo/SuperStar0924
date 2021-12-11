@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="###">
+        <input type="text" placeholder="用户名" id="user">
+        <input type="text" placeholder="密码" id="pass">
+        <button id="btn">登录</button>
+    </form>
+    <script>
+        const oUser = document.getElementById('user')
+        const oPass = document.getElementById('pass')
+        const oBtn = document.getElementById('btn')
+
+        oBtn.onclick = function (e) {
+            /* 
+                接口文档： 
+                - 请求地址：/login
+                - 请求方式：post
+                - 参数：
+                    - user:用户名
+                    - pass：密码
+                - 响应(json对象类型)
+                    - code:当前处理的状态码 10000代表登录成功  100001代表密码或者账号错误
+                    - msg:结果字符串
+            */
+
+            // 《注意》：put请求和post请求的发送方式一致
+
+            // 1. 实例化XMLHttpRequest
+            const xhr = new XMLHttpRequest();
+
+            // 2. 打开路径，使用open方法（POST请求的请求体不能写在url地址上）
+            xhr.open("POST", `/login`, true);
+
+            //3.发送请求使用send方法，此时有两种写法，1.form表单格式 2.json字符串格式  并且需要书写请求的数据类型content-type
+            //(1).发送的是form表单格式 
+            /* xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded;charset=utf-8")
+            xhr.send(`user=${oUser.value}&pass=${oPass.value}`); */
+
+            //(2).发送的是json字符串格式
+            xhr.setRequestHeader("Content-Type", "application/json;charset=utf-8")
+            xhr.send(JSON.stringify({
+                user: oUser.value,
+                pass: oPass.value
+            }))
+
+            //4.onreadystatechange事件可以对请求状态码进行监听
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && (xhr.status >= 200 && xhr.status <= 299)) {
+                    const dataStr = xhr.responseText;
+                    const data = JSON.parse(dataStr);
+                    console.log(data);
+                }
+            }
+
+
+            return false;
+        }
+    </script>
+</body>
+
+</html>
