@@ -19,7 +19,8 @@ app.get("/login", (req, res) => {
     res.set("Content-type", "application/javascript;charset=utf-8")
 
     if (user === "laoli" && pass === '123456') {
-        return res.send(`${callback}(${JSON.stringify({code:10000,msg:"登录成功"})})`)
+        // return res.send(`${callback}(${JSON.stringify({code:10000,msg:"登录成功"})})`)
+        return res.send(`${callback}({code:10000,msg:"登录成功"})`)
     }
 
     res.send(`${callback}(${JSON.stringify({code:10001,msg:"登录失败"})})`)
