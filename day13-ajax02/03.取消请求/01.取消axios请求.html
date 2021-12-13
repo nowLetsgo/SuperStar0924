@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+
+<body>
+    <form action="###" id="form">
+        <input type="text" placeholder="用户名" id="user">
+        <input type="text" placeholder="密码" id="pass">
+        <button id="btn">登录</button>
+        <button id="cancel">取消请求</button>
+    </form>
+    <script>
+        const oUser = document.getElementById('user');
+        const oPass = document.getElementById('pass');
+        const oForm = document.getElementById('form');
+        const oCancel = document.getElementById('cancel');
+
+        //在请求前获取 取消请求的cancelToken对象
+        const CancelToken = axios.CancelToken;
+        let cancel = null;
+
+        oForm.onsubmit = function () {
+            axios.post("/login", {
+                    user: oUser.value,
+                    pass: oPass.value
+                }, {
+                    //在axios配置中，有一个属性cancelToken属性，用来配置取消请求
+                    //等axios发送的时候 我们就会执行cancelToken的配置信息
+                    //new CancelToken()接受一个参数是一个回调函数，回调函数接受一个参数c是一个cancel函数
+
+                    cancelToken: new CancelToken((c) => {
+                        //c是一个cancel函数，当调用c这个函数之后，就能取消当前的请求了
+                        console.log("c", c);
+                        //把c赋值给一个全局变量，则在任意位置都能取消当前请求了
+                        cancel = c;
+                    })
+                })
+                .then(value => {
+                    console.log(value);
+                })
+                .catch(reason => {
+                    //当请求被取消的时候也会进入失败的回调中
+                    console.log(reason);
+                })
+
+            return false
+        }
+
+        oCancel.onclick = function () {
+            //取消请求
+            //cancel接受一个参数，是当前取消的原因，将来获取的时候可以看到
+            cancel("我就是不想请求了 ");
+
+            //取消按钮在表单中，所以点击可能会再次请求，所以阻止默认事件
+            return false
+        }
+    </script>
+</body>
+
+</html>
