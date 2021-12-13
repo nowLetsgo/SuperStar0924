@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+
+<body>
+    <form action="###" id="form">
+        <input type="text" placeholder="用户名" id="user">
+        <input type="text" placeholder="密码" id="pass">
+        <button id="btn">登录</button>
+    </form>
+    <script>
+        const oUser = document.getElementById('user');
+        const oPass = document.getElementById('pass');
+        const oForm = document.getElementById('form');
+
+        function fn(data) {
+            console.log(data);
+        }
+        /* http://192.168.17.62:3000/login */
+
+        let oScript = null;
+        oForm.onsubmit = function () {
+            if (oScript) {
+                oScript.remove();
+            }
+            //因为请求跨域了，所以新创建一个script标签帮我们去请求，script标签的src属性可以跨域
+            oScript = document.createElement("script");
+            //给script标签携带数据和一个回调函数(全局函数)
+            oScript.src = `http://192.168.17.62:3000/login?user=${oUser.value}&pass=${oPass.value}&callback=fn`
+
+            //把新创建的script标签插入到页面中
+            document.body.appendChild(oScript)
+
+            return false;
+        }
+    </script>
+
+
+</body>
+
+</html>

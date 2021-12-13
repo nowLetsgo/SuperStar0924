@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function myAxios({
+            method = "get",
+            url,
+            data = {},
+            params = {}
+        }) {
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+
+                //在发送之前，把查询字符串处理一下
+                let queryString = '?'
+                for (let key in params) {
+                    queryString += key + '=' + params[key] + "&"
+                }
+                queryString = queryString.slice(0, -1); //取掉末尾多余的&符号
+
+
+                //打开路径
+                xhr.open(method, url + queryString, true);
+
+                //判断请求方式设置请求头
+                if (method.toLowerCase() === "post") {
+                    xhr.setRequestHeader("Content-Type", "application/json;charset=utf-8")
+                }
+                //发送请求
+                xhr.send(JSON.stringify(data));
+
+                //监听
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState !== 4) return;
+
+                    if (xhr.status >= 200 && xhr.status <= 299) {
+                        const data = JSON.parse(xhr.responseText);
+                        resolve(data);
+                    } else {
+                        reject("失败" + xhr.status + " " + xhr.readyState)
+                    }
+                }
+
+            })
+        }
+
+        myAxios({
+                method: "post",
+                url: "/login",
+                data: {
+                    user: "laoli",
+                    pass: '123456'
+                },
+                params: {}
+            })
+            .then(value => {
+                console.log(value);
+            }).catch(reason => {
+                console.log(reason);
+            })
+    </script>
+</body>
+
+</html>
