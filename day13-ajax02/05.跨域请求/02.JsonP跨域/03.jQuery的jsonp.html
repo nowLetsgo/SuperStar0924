@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.js"></script>
+</head>
+
+<body>
+    <script>
+        //在jQuery中，还是使用getJSON方法，在url地址后拼接一个callback=?  就认为是一个jsonp请求，那么底层就想原生的jsonp一样，就把自己的回调函数起一个名字，发送给服务端进行jsonp请求
+        $.getJSON("http://192.168.17.62:3000/login?user=laoli&pass=123456&callback=?", function (data) {
+            console.log(data);
+        })
+
+
+        $.getJSON("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=1&cb=?", function (data) {
+            console.log(data);
+        })
+    </script>
+</body>
+
+</html>

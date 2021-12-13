@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+
+<body>
+    <input type="text" id="ipt">
+    <script>
+        const oIpt = document.getElementById('ipt')
+
+        //回调函数
+        function getData(data) {
+            console.log(data);
+        }
+
+        let oScript = null;
+        oIpt.oninput = function () {
+            if (oScript) {
+                oScript.remove();
+            }
+
+            oScript = document.createElement("script");
+            oScript.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=' + this.value + "&cb=getData";
+            document.body.appendChild(oScript)
+        }
+    </script>
+
+
+</body>
+
+</html>
