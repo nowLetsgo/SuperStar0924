@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+
+<body>
+    <form action="###" id="form">
+        <input type="text" placeholder="用户名" id="user">
+        <input type="text" placeholder="密码" id="pass">
+        <button id="btn">登录</button>
+    </form>
+    <script>
+        const oUser = document.getElementById('user');
+        const oPass = document.getElementById('pass');
+        const oForm = document.getElementById('form');
+
+        axios.interceptors.request.use((config) => {
+            //请求拦截器的回调函数接受的参数是:请求的配置对象
+            console.log("请求拦截器", config);
+            //我们可以在拦截器中对请求对象进行进一步的配置
+            //案例：额外在添加一个data的数据
+            config.data.tel = "15505555505";
+
+            //请把配置对象返回出去，才能进行下一步的请求
+            return config;
+        }, (err) => {
+            //当请求出错的时候会进入失败的请求拦截器，失败的拦截器直接返回一个失败的promise对象
+            return Promise.reject(err);
+
+        })
+
+        oForm.onsubmit = function () {
+            axios.post("/login", {
+                    user: oUser.value,
+                    pass: oPass.value
+                })
+                .then(value => {
+                    console.log(value);
+                })
+                .catch(reason => {
+                    console.log(reason);
+                })
+
+            return false
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+
+<body>
+    <form action="###" id="form">
+        <input type="text" placeholder="用户名" id="user">
+        <input type="text" placeholder="密码" id="pass">
+        <button id="btn">登录</button>
+    </form>
+    <script>
+        const oUser = document.getElementById('user');
+        const oPass = document.getElementById('pass');
+        const oForm = document.getElementById('form');
+
+        //响应拦截器，当响应以后，响应拦截器可以拿到响应的信息
+        axios.interceptors.response.use(res => {
+            //res就是响应的对象信息
+            console.log("响应拦截器", res);
+            //可以对响应的信息进行处理，把处理后的值 直接return出去 给axios的成功处理函数接受
+            if (res.data.code === 10000) {
+                return res.data;
+            }
+
+            //如果数据不是我们想要的，则应该让数据进入到axios失败处理函数
+            return Promise.reject(res.data);
+
+        }, err => {
+            //当响应出错的话 会进入响应拦截器的错误处理函数中，我们直接返回一个失败的promise对象，就能让错误进入axios的错误处理中了
+            return Promise.reject(err);
+        })
+
+        oForm.onsubmit = function () {
+            axios.post("/login", {
+                    user: oUser.value,
+                    pass: oPass.value
+                })
+                .then(value => {
+                    console.log("我们期望的数据", value);
+                })
+                .catch(reason => {
+                    console.log("不是希望的数据", reason);
+                })
+
+            return false
+        }
+    </script>
+</body>
+
+</html>
