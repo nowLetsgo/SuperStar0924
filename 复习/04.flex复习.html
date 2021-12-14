@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outer {
+            width: 1000px;
+            height: 500px;
+            border: 1px solid #000;
+            display: flex;
+            /* flex-direction: column; */
+        }
+
+        .outer div:nth-child(1) {
+            background-color: pink;
+            flex-grow: 1;
+            /* width: 0; */
+            /* height: 0; */
+            flex-basis: 0;
+            flex-shrink: 1;
+
+            flex: 1;
+        }
+
+        .outer div:nth-child(2) {
+            background-color: yellowgreen;
+            flex-grow: 1;
+            /* width: 0; */
+            /* height: 0; */
+            flex-basis: 0;
+            flex-shrink: 1;
+        }
+
+        .outer div:nth-child(3) {
+            background-color: greenyellow;
+            flex-grow: 1;
+            /* width: 0; */
+            /* height: 0; */
+            flex-basis: 0;
+            flex-shrink: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <div>hello <br>123</div>
+        <div>nice</div>
+        <div>ddddddd</div>
+    </div>
+</body>
+
+</html>
