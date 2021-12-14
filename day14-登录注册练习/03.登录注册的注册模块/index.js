@@ -2,10 +2,12 @@ const express = require("express");
 const path = require("path");
 //连接数据库模块
 require("./db")
-//引入数据库的用户集合
-const userModel = require("./models/userModel");
+
 const app = express();
 
+//使用处理post请求数据的中间件
+app.use(express.urlencoded());
+app.use(express.json());
 
 //使用express的静态文件中间件，把静态文件暴露出去
 app.use(express.static(path.resolve(__dirname, "./views")))
