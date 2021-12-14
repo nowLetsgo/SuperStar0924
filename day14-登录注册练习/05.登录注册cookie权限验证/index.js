@@ -1,10 +1,13 @@
 const express = require("express");
 const path = require("path");
+const cookieParser = require("cookie-parser");
 //连接数据库模块
 require("./db")
 
 const app = express();
 
+//把cookie-parser中间件挂载在app上
+app.use(cookieParser());
 
 //使用处理post请求数据的中间件
 app.use(express.urlencoded());
@@ -18,11 +21,13 @@ app.use('/public', express.static(path.resolve(__dirname, "./public")))
 const registerRouter = require("./route/register");
 const loginRouter = require("./route/login");
 const regRouter = require("./route/reg");
+const centerRouter = require("./route/center");
 
 //把子模块的router挂载在app上
 app.use(regRouter);
 app.use(registerRouter);
 app.use(loginRouter);
+app.use(centerRouter);
 
 app.listen(3000, err => {
     if (err) {
