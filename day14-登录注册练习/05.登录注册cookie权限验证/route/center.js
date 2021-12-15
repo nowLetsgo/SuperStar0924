@@ -32,10 +32,13 @@ router.post("/center", async (req, res) => {
 
     //如果用户发来的userID查询不到结果，则说明没有权限
     if (!userResult) {
+        //删掉用户的错误的cookie
+        res.clearCookie("key")
         return res.send({
             code: 10001,
             msg: "您没有权限访问"
         })
+
     }
 
     //如果有权限 则响应一个用户名出去

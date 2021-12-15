@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn1">red</button>
+    <button id="btn2">blue</button>
+    <button id="btn3">green</button>
+    <button id="btn4">yellow</button>
+    <button id="clear">clear</button>
+    <script>
+        const oRed = document.getElementById('btn1')
+        const oBlue = document.getElementById('btn2')
+        const oGreen = document.getElementById('btn3')
+        const oYellow = document.getElementById('btn4')
+        const oClear = document.getElementById('clear')
+
+        //当页面加载的时候，获取本地存储保存的主题颜色
+        const nowMainColor = localStorage.getItem("mainColor");
+        document.body.style.background = nowMainColor;
+
+
+        oRed.onclick = function () {
+            document.body.style.background = "red"
+            localStorage.setItem("mainColor", "red")
+        }
+        oBlue.onclick = function () {
+            document.body.style.background = "blue"
+            localStorage.setItem("mainColor", "blue")
+        }
+        oGreen.onclick = function () {
+            document.body.style.background = "green"
+            localStorage.setItem("mainColor", "green")
+        }
+        oYellow.onclick = function () {
+            document.body.style.background = "yellow"
+            localStorage.setItem("mainColor", "yellow")
+        }
+
+        oClear.onclick = function () {
+            //删除某一个localStorage
+            localStorage.removeItem("mainColor")
+
+
+            //清空所有的localStorage
+            // localStorage.clear();
+        }
+    </script>
+</body>
+
+</html>
