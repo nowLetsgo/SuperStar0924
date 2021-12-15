@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+
+<body>
+    <button id="btn">请求图片</button>
+    <script>
+        const oBtn = document.getElementById('btn');
+        oBtn.onclick = function () {
+            axios.get("http://192.168.17.62:3000/axios", {
+
+            }).then(value => {
+                console.log(value);
+            }).catch(reason => {
+                console.log(reason);
+            })
+        }
+    </script>
+</body>
+
+</html>
