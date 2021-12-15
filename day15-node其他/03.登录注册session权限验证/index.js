@@ -3,6 +3,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 var session = require('express-session')
 const MongoStore = require('connect-mongo');
+const autoOpen = require("./util/autoOpen")
 //连接数据库模块
 require("./db")
 
@@ -45,4 +46,6 @@ app.listen(3000, err => {
         return;
     }
     console.log("成功，请访问 http://192.168.17.62:3000");
+    //执行cmd命令 自动打开浏览器
+    autoOpen('http://192.168.17.62:3000');
 })
