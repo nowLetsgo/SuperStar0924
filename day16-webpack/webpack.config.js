@@ -2,6 +2,7 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin')
 
 module.exports = {
     //entry:入口文件配置
@@ -75,6 +76,8 @@ module.exports = {
             removeStyleLinkTypeAttributes: true,
             useShortDoctype: true
         }
+    }), new ESLintPlugin({
+        fix: true
     })],
 
     // mode:打包模式:development / production
