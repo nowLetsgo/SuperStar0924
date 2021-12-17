@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
-var session = require('express-session')
+const session = require('express-session')
 const MongoStore = require('connect-mongo');
 const autoOpen = require("./util/autoOpen")
 //连接数据库模块
