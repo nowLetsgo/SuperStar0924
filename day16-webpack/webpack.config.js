@@ -1,5 +1,7 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+
 module.exports = {
     //entry:入口文件配置
     entry: "./src/index.js",
@@ -21,14 +23,22 @@ module.exports = {
             // use: ["style-loader", "css-loader"]
 
             //单独把css提取出一个独立的文件
-            use: [MiniCssExtractPlugin.loader, "css-loader"]
+            use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"]
         }, {
             test: /\.less$/i,
             //less-loader：是把less转为css(请安装less)
             // use: ["style-loader", "css-loader", "less-loader"]
 
-            use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"]
+            use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader", "postcss-loader"]
         }]
+    },
+
+    //压缩css配置
+    optimization: {
+        minimizer: [
+            new CssMinimizerPlugin(),
+        ],
+        minimize: true,
     },
 
     //plugin:插件：loader 用于转换某些类型的模块，而插件则可以用于执行范围更广的任务。包括：打包优化，资源管理，注入环境变量。

@@ -6,7 +6,7 @@
  * or disable the default devtool with "devtool: false".
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
-/******/ (() => { // webpackBootstrap
+/******/ (function() { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
@@ -14,7 +14,7 @@
 /*!*************************!*\
   !*** ./src/css/02.less ***!
   \*************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://day16-webpack/./src/css/02.less?");
 
@@ -24,7 +24,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /*!************************!*\
   !*** ./src/css/01.css ***!
   \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://day16-webpack/./src/css/01.css?");
 
@@ -34,7 +34,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_add__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/add */ \"./src/js/add.js\");\n/* harmony import */ var _js_user_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/user.json */ \"./src/js/user.json\");\n/* harmony import */ var _css_01_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./css/01.css */ \"./src/css/01.css\");\n/* harmony import */ var _css_02_less__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./css/02.less */ \"./src/css/02.less\");\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n(0,_js_add__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(1, 2);\r\n\r\nconsole.log(_js_user_json__WEBPACK_IMPORTED_MODULE_1__);\n\n//# sourceURL=webpack://day16-webpack/./src/index.js?");
 
@@ -44,9 +44,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_
 /*!***********************!*\
   !*** ./src/js/add.js ***!
   \***********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ add)\n/* harmony export */ });\nfunction add(a, b) {\r\n    console.log(a + b);\r\n}\n\n//# sourceURL=webpack://day16-webpack/./src/js/add.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": function() { return /* binding */ add; }\n/* harmony export */ });\nfunction add(a, b) {\r\n    console.log(a + b);\r\n}\n\n//# sourceURL=webpack://day16-webpack/./src/js/add.js?");
 
 /***/ }),
 
@@ -54,7 +54,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /*!**************************!*\
   !*** ./src/js/user.json ***!
   \**************************/
-/***/ ((module) => {
+/***/ (function(module) {
 
 eval("module.exports = JSON.parse('{\"name\":\"laowang\",\"pass\":\"laowang123\",\"hobby\":[\"洗\",\"spa\"]}');\n\n//# sourceURL=webpack://day16-webpack/./src/js/user.json?");
 
@@ -88,32 +88,32 @@ eval("module.exports = JSON.parse('{\"name\":\"laowang\",\"pass\":\"laowang123\"
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 		__webpack_require__.d = function(exports, definition) {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
+/******/ 		__webpack_require__.r = function(exports) {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /************************************************************************/
 /******/ 	
