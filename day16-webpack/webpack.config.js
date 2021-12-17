@@ -31,6 +31,24 @@ module.exports = {
             // use: ["style-loader", "css-loader", "less-loader"]
 
             use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader", "postcss-loader"]
+        }, {
+            test: /\.js$/i,
+            exclude: /node_modules/,
+            use: {
+                loader: "babel-loader",
+                options: {
+                    presets: [
+                        [
+                            '@babel/preset-env',
+                            {
+                                useBuiltIns: "usage", //按需加载
+                                corejs: 3, //corejs是按需加载的配置文件，3是版本号
+                                targets: "defaults"
+                            },
+                        ]
+                    ]
+                }
+            }
         }]
     },
 
