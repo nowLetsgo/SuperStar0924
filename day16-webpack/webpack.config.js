@@ -1,6 +1,7 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     //entry:入口文件配置
@@ -44,6 +45,18 @@ module.exports = {
     //plugin:插件：loader 用于转换某些类型的模块，而插件则可以用于执行范围更广的任务。包括：打包优化，资源管理，注入环境变量。
     plugins: [new MiniCssExtractPlugin({
         filename: "./css/[name].css"
+    }), new HtmlWebpackPlugin({
+        filename: "index.html",
+        template: "./src/index.html",
+        minify: {
+            collapseWhitespace: true,
+            keepClosingSlash: true,
+            removeComments: true,
+            removeRedundantAttributes: true,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            useShortDoctype: true
+        }
     })],
 
     // mode:打包模式:development / production
