@@ -15,7 +15,7 @@ module.exports = {
 
     //output:输出位置的配置
     output: {
-        path: path.resolve(__dirname, "./dist"),
+        path: path.resolve(__dirname, "../dist"),
         filename: "./js/main.js"
     },
 
@@ -112,5 +112,5 @@ module.exports = {
     }), new CleanWebpackPlugin()],
 
     // mode:打包模式:development / production
-    mode: "development"
+    mode: "production"
 }
