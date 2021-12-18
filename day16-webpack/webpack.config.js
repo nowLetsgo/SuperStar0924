@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin')
+const CopyWebpackPlugin = require("copy-webpack-plugin")
 
 module.exports = {
     //entry:入口文件配置
@@ -51,7 +52,7 @@ module.exports = {
                 }
             }
         }, {
-            test: /\.(png|jpg|gif|svg)$/,
+            test: /\.(png|jpg|gif|svg|ico)$/,
             type: "asset",
             parser: {
                 dataUrlCondition: {
@@ -94,6 +95,11 @@ module.exports = {
         }
     }), new ESLintPlugin({
         fix: true
+    }), new CopyWebpackPlugin({
+        patterns: [{
+            from: "./src/public",
+            to: "public"
+        }]
     })],
 
     // mode:打包模式:development / production
