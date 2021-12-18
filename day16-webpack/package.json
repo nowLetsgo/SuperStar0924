@@ -35,5 +35,8 @@
   ],
   "eslintConfig": {
     "extends": "airbnb-base"
+  },
+  "dependencies": {
+    "html-loader": "^3.0.1"
   }
 }

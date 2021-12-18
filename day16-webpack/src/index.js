@@ -31,6 +31,7 @@ console.log(p1);
 
 // eslint-disable-next-line
 console.log(laowang);
+// eslint-disable-next-line
 console.log(dog);
 
 // eslint-disable-next-line

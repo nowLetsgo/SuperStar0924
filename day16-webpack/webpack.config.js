@@ -61,6 +61,11 @@ module.exports = {
             generator: {
                 filename: 'img/[name][ext]'
             }
+        }, {
+            test: /\.html$/i,
+            use: {
+                loader: 'html-loader'
+            }
         }]
     },
 
