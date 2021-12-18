@@ -50,6 +50,17 @@ module.exports = {
                     ]
                 }
             }
+        }, {
+            test: /\.(png|jpg|gif|svg)$/,
+            type: "asset",
+            parser: {
+                dataUrlCondition: {
+                    maxSize: 15 * 1024, // 小于15kb以下的图片会被打包成base64格式
+                },
+            },
+            generator: {
+                filename: 'img/[name][ext]'
+            }
         }]
     },
 
