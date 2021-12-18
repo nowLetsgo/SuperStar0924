@@ -111,5 +111,13 @@ module.exports = {
         }]
     }), new CleanWebpackPlugin()],
 
-    mode: "development"
+    mode: "development",
+
+    //devServer开发模式自动编译配置
+    devServer: {
+        port: 8888,
+        open: true,
+        compress: true,
+        liveReload: true
+    }
 }

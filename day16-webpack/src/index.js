@@ -32,7 +32,7 @@ console.log(p1);
 // eslint-disable-next-line
 console.log(laowang);
 // eslint-disable-next-line
-console.log(dog);
+console.log("dog1111", dog);
 
 // eslint-disable-next-line
 const oImg = new Image();
@@ -41,7 +41,7 @@ oImg.src = dog;
 // eslint-disable-next-line
 document.body.appendChild(oImg);
 // eslint-disable-next-line
-console.log(person);
+console.log("person", person);
 
 // eslint-disable-next-line
 const oImg2 = new Image();
@@ -49,3 +49,4 @@ const oImg2 = new Image();
 oImg2.src = person;
 // eslint-disable-next-line
 document.body.appendChild(oImg2);
+// eslint-disable-next-line
