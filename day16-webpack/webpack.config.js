@@ -4,6 +4,9 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin')
 const CopyWebpackPlugin = require("copy-webpack-plugin")
+const {
+    CleanWebpackPlugin
+} = require('clean-webpack-plugin');
 
 module.exports = {
     //entry:入口文件配置
@@ -67,6 +70,12 @@ module.exports = {
             use: {
                 loader: 'html-loader'
             }
+        }, {
+            test: /\.(eot|svg|ttf|woff|woff2)$/i,
+            type: 'asset/resource',
+            generator: {
+                filename: 'font/[name][ext]'
+            }
         }]
     },
 
@@ -100,7 +109,7 @@ module.exports = {
             from: "./src/public",
             to: "public"
         }]
-    })],
+    }), new CleanWebpackPlugin()],
 
     // mode:打包模式:development / production
     mode: "development"

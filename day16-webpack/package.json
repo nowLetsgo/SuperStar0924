@@ -38,6 +38,7 @@
     "extends": "airbnb-base"
   },
   "dependencies": {
+    "clean-webpack-plugin": "^4.0.0",
     "html-loader": "^3.0.1"
   }
 }
