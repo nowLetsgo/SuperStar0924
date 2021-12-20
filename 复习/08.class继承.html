@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //父类
+        class Person {
+            constructor(name) {
+                this.name = name;
+            }
+            say() {
+                console.log("say");
+            }
+        }
+
+        //子类
+        class Stu extends Person {
+            //子类如果不需要扩展自己的属性的时候，可以不用添加constructor方法
+            //一旦添加了constructor方法，请写super方法，以便借助父类this来构建自己的内容
+            constructor(name, age) {
+                super(name); //super：1.向父类传参 2.创建子类的this
+                this.age = age
+            }
+
+            do() {
+                console.log("do");
+            }
+        }
+    </script>
+</body>
+
+</html>

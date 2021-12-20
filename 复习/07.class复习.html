@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Person {
+
+            //构造器-实例化后自动调用（可以不写，默认添加一个空的constructor）
+            //当想要在实例化传参的时候，需要用constructor去接收
+            constructor(name) {
+                //this指向实例化对象
+                this.name = name;
+            }
+            //直接设置给实例化对象，类似于在constructor中书写（this.age = 18）
+            age = 18;
+            //直接设置给实例化对象的
+            //如果say是一个箭头函数，则没有自己的this，而是直接使用的是类中的this,类中的this指向实例化对象
+            say = () => {
+                console.log(this); //永远指向实例
+                console.log("say");
+            }
+            //如果speek不是一个箭头函数，speek是被实例对象调用的，所以this指向实例对象(但是如果出现隐式丢失，则this指向另说)
+            speek = function () {
+                console.log(this); //实例
+                console.log("speek");
+            }
+
+
+            //扩展原型方法
+            do() {
+                //this指向实例化对象
+                console.log("do");
+            }
+
+            static hello = function () {
+                console.log("world");
+            }
+
+
+        }
+
+        console.log(Person.prototype.say);
+        const p1 = new Person("laowang");
+        // console.log(p1.say());
+        // console.log(p1.speek());
+
+        const fn = p1.speek;
+        fn();
+        const fn2 = p1.say;
+        fn2();
+    </script>
+</body>
+
+</html>
