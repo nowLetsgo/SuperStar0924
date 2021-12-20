@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- react的核心包 提供react的基本语法等 -->
+    <script src="./js/react.development.js"></script>
+    <!-- react操作dom的包 用来提供操作dom的方法 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- 编译react的语法 让浏览器可以识别 -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- 创建一个标签，用来存放react创建的DOM 的容器-->
+    <div id="app"></div>
+    <script type="text/babel">
+        //创建一个虚拟DOM
+        const VDom = <h1>Hello World</h1>;
+
+        //把虚拟DOM插入到页面中
+        //使用ReactDOM对象上的render方法，接受两个参数：1.虚拟DOM  2.被插入虚拟DOM的真实DOM容器
+        ReactDOM.render(VDom,document.getElementById('app'));
+    </script>
+</body>
+
+</html>
