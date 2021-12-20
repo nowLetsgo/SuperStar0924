@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        //创建虚拟DOM，其实babel会把虚拟DOM转为React中的js方法来实现
+        //JSX其实就是js+xml,包含了js所有语法和创建虚拟DOM的功能
+        const vDom = (
+            <div>
+                <h1>JSX方式创建虚拟DOM</h1>
+                <p>直接书写即可</p>
+            </div>
+        );
+
+        ReactDOM.render(vDom,document.getElementById('app'))
+    </script>
+</body>
+
+</html>

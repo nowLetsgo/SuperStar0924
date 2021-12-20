@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        //获取一个真实DOM
+        const oApp = document.getElementById('app');
+        console.log(oApp);
+        console.dir(oApp);
+
+
+        /* 
+            本质就是Object类型的对象（一般对象）。
+            虚拟DOM比较“轻”，真实DOM比较“重”，虚拟DOM是react内部在用的，无需真实DOM身上那么多的属性
+            虚拟DOM早晚会被react转为真实DOM，呈现在页面上。        
+        */
+        //获取一个虚拟DOM
+        const vDom = <h1 id="tit">hello React</h1>
+        console.log(vDom);
+
+
+        /* 
+            虚拟DOM JSX伪代码
+            const vDom = {
+                type:"div",
+                attr:{
+                    id:"con"
+                },
+                children:[
+                    {
+                        type:"h1",
+                        attr:{
+                            id:"tit"
+                        },
+                        children:[
+                            "hello React"
+                        ] 
+                    },
+                    {
+                        type:"p",
+                        attr:{
+                            id:"inner"
+                        },
+                        children:[
+                            "hello ReactDOM"
+                        ] 
+                    },
+                ] 
+            }
+        
+        */
+    </script>
+</body>
+
+</html>
