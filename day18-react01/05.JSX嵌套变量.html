@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        //获取当前的时间
+        let nowTime = new Date();
+
+        //此时如果把变量写在虚拟DOM中，虚拟只能读取一次的值，当这个变量发生改变的时候，并不会改变虚拟DOM的内容（只有以后通过组件的state状态才能改变）
+        setTimeout(()=>{
+            nowTime = new Date();
+        },1000)
+
+        const arr = ["laowang","laoli","laozhang"]
+        //创建虚拟DOM
+        const vDom = (
+            <div>
+                <h1>hello React</h1>
+
+                {/* 在花括号中书写js表达式,如果是一个变量，这个虚拟DOM的内容不会随着变量的改变而改变，除非里边书写的是state状态 */}
+                {/* 花括号中的值如果想要是一个集合的话，请时候用数组，不能是其他类型的对象 */}
+                {/* <p>{nowTime}</p>  */}
+
+                <p>{nowTime.toString()}</p>  
+
+                {/* 如果想要在花括号中书写一个对象类型，只能书写数组,并把值依次取出放在虚拟DOM中 */}
+                <p>{arr}</p>
+                
+                {/* 在jsx语法中，可以在虚拟DOM中添加或括号，内部可以书写js表达式 */}
+                {/* 表达式：一般都会返回一个值:a+b、fn()、arr.push()、a?b:c) */}
+                {/* 语句：一般都为了完成一些逻辑，不会返回值:for、function fn(){}、while */}
+                <p>{1+1}</p>
+            </div>
+        );
+
+
+        ReactDOM.render(vDom,document.getElementById('app'))
+    </script>
+</body>
+
+</html>

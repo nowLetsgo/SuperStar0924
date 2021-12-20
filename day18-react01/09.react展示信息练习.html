@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        const person = ["老杨","老聂","老杨聂"];
+
+        //其实如果把上边的数组的值都放在虚拟DOM中，并放在数组中，就可以直接解析了
+        // const Person = [<li>老杨</li>,<li>老聂</li>,<li>老杨聂</li>]
+
+       /*  //在外边处理person 得到我们jsx想要的数据
+        const personResult = person.map( item => {
+            return <li>{item}</li>
+        }) */
+
+        const vDom = (
+            <ul>
+                {   
+                    /* 直接书写表达式，返回一个新的数组，供jsx去读取 */
+                    /* 在遍历生成虚拟DOM的时候，请给每一个虚拟DOM一个独一无二的key,方便虚拟DOM的对比（我们暂时使用index） */
+                    person.map( (item,index) => {
+                        return <li key={index}>{item}</li>
+                    })
+                }
+            </ul>
+        )
+
+
+        ReactDOM.render(vDom,document.getElementById('app'))
+    </script>
+</body>
+
+</html>

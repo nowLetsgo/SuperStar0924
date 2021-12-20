@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        //JSX语法中 必须有一个根元素（不能存在兄弟）
+        const vDOM = (
+            <div>
+                {/* 小写字母开头的标签 都认为是HTML标签 */}
+                <span>我是span</span>
+                {/* 大写字母开头的标签，其实是对组件的使用，会自动查找这个组件名 */}
+                {/* <Strong>我是壮壮</Strong> */}
+            </div>
+        )
+
+        ReactDOM.render(vDOM,document.getElementById('app'))
+    </script>
+</body>
+
+</html>
