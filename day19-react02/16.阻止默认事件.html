@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <a href="http://www.baidu.com" id="link1">百度一下你就知道</a>
+
+    <div id='app'>
+
+    </div>
+    <script type='text/babel'>
+        //普通html中阻止跳转
+        const oLink1 = document.getElementById('link1');
+        oLink1.onclick = function(){
+            //阻止默认事件 可以阻止跳转
+            return false;
+        }
+
+
+        class Test extends React.Component{
+            render(){
+                return (
+                    <a href="http://www.baidu.com" onClick={this.link}>百度两下你就知道</a>
+                )
+            }
+            link = (e)=>{
+                //在react的事件中，不能使用return false
+                e.preventDefault();
+                // return false;
+            }
+        }
+
+        ReactDOM.render(<Test/>,document.getElementById('app'))
+    </script>
+</body>
+
+</html>
