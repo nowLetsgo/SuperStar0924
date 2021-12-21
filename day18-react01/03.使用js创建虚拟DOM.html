@@ -6,25 +6,25 @@
     <title>Document</title>
     <script src='./js/react.development.js'></script>
     <script src='./js/react-dom.development.js'></script>
-    <script src='./js/babel.min.js'></script>
 </head>
 
 <body>
     <div id='app'></div>
-    <script type='text/babel'>
+    <script type='text/javascript'>
         //在React对象上有一个createElement的方法用来创建虚拟DOM
         //参数1：标签名
         //参数2：是一个对象，内部保存的是当前标签的属性
         //参数3+：是这个标签的内容 或者 额外的虚拟DOM
         // const vDom = React.createElement("div",{id:"box"},"hello React");
         const vDom = React.createElement(
-            "div",
-            {id:"box"},
-            React.createElement("h1",null,"hello React"),
-            React.createElement("h2",null,"hello ReactDOM"),
+            "div", {
+                id: "box"
+            },
+            React.createElement("h1", null, "hello React"),
+            React.createElement("h2", null, "hello ReactDOM"),
         );
 
-        ReactDOM.render(vDom,document.getElementById('app'))
+        ReactDOM.render(vDom, document.getElementById('app'))
     </script>
 </body>
 

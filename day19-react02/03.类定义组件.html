@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        //使用类定义组件（类组件）(复杂组件)，需要继承React.Compnent
+        class Hello extends React.Component{
+            //在类组件定义中 一定要书写render方法,当类组件被使用的时候，会自动的调用render方法
+            //render方法是定义给了当前Hello组件的原型对象
+            render(){
+                //render方法中的this指向组件实例
+                console.log(this);
+                //render方法一定要返回一个内容，内容就是组件的返回的虚拟DOM
+                return <h1>hello World</h1>
+            }
+        }
+    
+        //使用类组件 也是直接通过标签的形式使用的
+        /* 
+            类组件渲染过程：
+                1.先去查找Hello组件
+                    - 如果找不到，则直接报错Hello is not defined
+                    - 如果找到，则进行下一步
+                2.找到了一个类组件
+                    - 先实例化这个类 得到一个实例化对象（组件实例对象、组件实例）
+                    - render方法是类的原型对象上的方法，得到组件实例之后，会自动的调用render方法，然后得到虚拟DOM渲染出来
+        
+        */
+        ReactDOM.render(<Hello/>,document.getElementById('app'))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        //定义一个函数式组件（无状态组件 简单组件）
+        /* 
+            特点：
+                1.没有生命周期函数
+                2.没有this，函数式组件式默认调用，并且babel编译jsx语法之后一定是严格模式，所以严格模式下的默认调用，this指向undefined
+                3.组件内部没有状态（state）
+        
+        */
+        function Hello(){
+            const con = "hello";
+            //undefined
+            console.log(this);
+            return (
+                <div>
+                    <h1>{con}</h1>
+                </div>
+            )
+        }
+        
+        ReactDOM.render(<Hello/>,document.getElementById('app'))
+    </script>
+</body>
+
+</html>

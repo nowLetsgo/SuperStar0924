@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        //定义一个函数式组件（无状态组件 简单组件）
+        function Hello(){
+            const con = "hello"
+            //组件最基本的事情是应该定义一个虚拟DOM
+            return (
+                <div>
+                    <h1>{con}</h1>
+                </div>
+            )
+        }
+    
+        //下边这种写法 并不是直接使用组件（函数式组件切勿使用以下方式）
+        // ReactDOM.render(Hello(),document.getElementById('app'))
+
+        //使用组件得到虚拟DOM
+        //组件的使用是直接书写标签，如果是大写字母，则认为是一个组件
+
+        /* 
+            函数式组件使用到渲染的过程：
+                1.先判断这个Hello组件是否存在
+                    - 如果存在，则去找到当前组件
+                    - 如果不存在，则报错 Hello is not defined
+                2.找到组件以后，去调用当前的组件函数，这个组件函数会返回一个虚拟DOM，然后交给render方法进行渲染
+        
+        */
+        
+        
+        ReactDOM.render(<Hello/>,document.getElementById('app'))
+    </script>
+</body>
+
+</html>
