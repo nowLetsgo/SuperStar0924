@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+    <script src="./js/prop-types.js"></script>
+</head>
+
+<body>
+    <div id='app1'></div>
+    <script type='text/babel'>
+        class Myself extends React.Component{
+            render(){
+                console.log(this);
+                const {name,age,hobby,sex,girlFri} = this.props;
+                return (
+                    <ul>
+                        <li>{name}</li>
+                        <li>{age}</li>
+                        <li>{hobby}</li>
+                        <li>{sex}</li>
+                        <li>{girlFri}</li>
+                    </ul>
+                )
+            }
+
+            /* 
+                配置props限制需要扩展静态属性propTypes，值是一个对象
+
+            
+            */
+            static propTypes = {
+                name:PropTypes.string,
+                age:PropTypes.number,
+                hobby:PropTypes.array,
+                sex:PropTypes.string.isRequired,
+                girlFri:PropTypes.oneOf(["小红","小绿"])
+            }
+
+            //扩展一个静态属性 defaultProps 值是一个对象 可以设置props的默认值
+            static defaultProps = {
+                name:"小聂聂"
+            }
+        }
+
+        
+
+       
+        //jsx允许我们使用三点运算符展开对象，外层嵌套一个大括号-在标签内书写js表达式
+        ReactDOM.render(<Myself name="laowang" age={18} hobby={["篮球","足球"]} sex="男" girlFri="小红"/>,document.getElementById('app1'))
+   </script>
+</body>
+
+</html>

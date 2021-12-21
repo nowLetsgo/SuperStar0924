@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+    <script src="./js/prop-types.js"></script>
+</head>
+
+<body>
+    <div id='app1'></div>
+    <script type='text/babel'>
+        function Myself(props){
+            //函数式组件 直接在第一个形参就是接受 props的传值，值是一个对象
+            const {name,age,hobby} = props;
+            return (
+                <ul>
+                    <li>{name}</li>    
+                    <li>{age}</li>    
+                    <li>{hobby}</li>      
+                </ul>
+            )
+        }
+
+        Myself.propTypes = {
+            name:PropTypes.string,
+            age:PropTypes.number,
+            hobby:PropTypes.array,
+        }
+        Myself.defaultProps = {
+            name:"小聂聂"
+        }
+       
+        //jsx允许我们使用三点运算符展开对象，外层嵌套一个大括号-在标签内书写js表达式
+        ReactDOM.render(<Myself  age={18} hobby={["篮球","足球"]} />,document.getElementById('app1'))
+   </script>
+</body>
+
+</html>

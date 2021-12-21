@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app1'></div>
+    <script type='text/babel'>
+        class Myself extends React.Component{
+            render(){
+                console.log(this);
+                const {name,age,sex,add,secret,weight} = this.props;
+                return (
+                    <ul>
+                        <li>{name}</li>
+                        <li>{age}</li>
+                        <li>{sex}</li>
+                        <li>{add}</li>
+                        <li>{secret}</li>
+                        <li>{weight}</li>
+                    </ul>
+                )
+            }
+        }
+        
+
+        const data = {
+            name:"laowang",
+            age:18,
+            sex:"男",
+            add:"深圳市宝安区凯程二路亿巢国际青年公寓726",
+            secret:"976576"
+        }
+
+        //jsx允许我们使用三点运算符展开对象，外层嵌套一个大括号-在标签内书写js表达式
+        ReactDOM.render(<Myself {...data} weight={180} sex="女"/>,document.getElementById('app1'))
+   </script>
+</body>
+
+</html>
