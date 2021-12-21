@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        /* 
+            什么是state：
+                state是每一个组件实例都有的一个属性，值默认是null，赋值的话是一个对象，用来保存数据
+                state被称作为组件的状态，组件的数据都是从state中获得，当state状态发生改变的时候，组件会重新调用render方法渲染
+                state是组件私有的，只能本组件使用和访问修改
+        
+        */
+
+        class App extends React.Component{
+            constructor(){
+                super();
+                this.state = {
+                    mood:"愤怒"
+                }
+            }
+            render(){
+                //render方法中的this指向组件实例，组件实例上有一个state属性
+                console.log(this);
+                // 我们需要从组件实例上拿到state，然后再拿到state上的所有的属性
+                const {mood} = this.state;
+
+                return (
+                    <div>{mood}</div>
+                )
+            }
+        }
+        
+        ReactDOM.render(<App/>,document.getElementById('app'))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+
+        class Header extends React.Component{
+            render(){
+                return (
+                    <header>
+                        <h1>Hello React</h1>
+                        <h2>组合组件</h2>    
+                    </header>
+                )
+            }
+        }
+
+        class Con extends React.Component{
+            render(){
+                return (
+                    <div>
+                        <Aside/>
+                        <p>我是con组件1</p>
+                        <p>我是con组件2</p>
+                    </div>
+                )
+            }
+        }
+
+
+        class Footer extends React.Component{
+            render(){
+                return (
+                    <footer>我是尾部</footer>
+                )
+            }
+        }
+        function Aside(){
+            return (
+                <aside>
+                    <a href="###">显卡</a>
+                    <a href="###">CPU</a>
+                    <a href="###">GPU</a>
+                </aside>
+            )
+        }
+
+        /* 
+            组合组件注意事项：
+                - 不要在组件调用的时候，嵌套其他组件
+                - 组件的调用基本都是单标签即可（也可以书写双标签）
+
+        */
+        class App extends React.Component{
+            render(){
+                return (
+                    <div>
+                        <Header/>
+                        <Con/>
+                        <Footer/>  
+                    </div>
+                )
+            }
+        }
+    
+        ReactDOM.render(<App/>,document.getElementById('app'))
+    </script>
+</body>
+
+</html>

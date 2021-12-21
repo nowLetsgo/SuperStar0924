@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+
+        class App extends React.Component{
+            //我们在没有必要书写constructor的时候，可以省略，以下这种方式也是设置实例对象上的属性的
+            state = {
+                mood:"愤怒",
+                flag:false
+            }
+
+            render(){
+                console.log(this);
+                const {flag} = this.state;
+                /* 
+                    React中绑定事件：
+                        1.给虚拟DOM设置事件属性 onXxxxx
+                        2.事件属性的值是一个函数，所以需要放在{}中
+                        3.当事件被触发的时候，事件函数会被调用
+                
+                */
+                return (
+                    <div>
+                        <p>{ flag ? "愤怒" : "愉快"}</p>
+                        <button onClick={fn}>切换</button>
+                    </div>
+                )
+            }
+        }
+
+
+        //定义一个事件函数
+        function fn(){
+            console.log("我是事件函数");
+        }
+        
+        ReactDOM.render(<App/>,document.getElementById('app'))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+
+        class App extends React.Component{
+            //我们在没有必要书写constructor的时候，可以省略，以下这种方式也是设置实例对象上的属性的
+            state = {
+                mood:"愤怒",
+                flag:false
+            }
+
+            render(){
+                //render方法中的this指向组件实例，组件实例上有一个state属性
+                console.log(this);
+                // 我们需要从组件实例上拿到state，然后再拿到state上的所有的属性
+                const {flag} = this.state;
+
+                return (
+                    <div>
+                        <p>{ flag ? "愤怒" : "愉快"}</p>
+                        <button>切换</button>
+                    </div>
+                )
+            }
+        }
+        
+        ReactDOM.render(<App/>,document.getElementById('app'))
+    </script>
+</body>
+
+</html>
