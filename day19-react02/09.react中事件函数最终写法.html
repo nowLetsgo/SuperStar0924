@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+
+        class App extends React.Component{
+
+            state = {
+                mood:"愤怒",
+                flag:false
+            }
+
+            render(){
+                console.log(this);
+                const {flag} = this.state;
+                return (
+                    <div>
+                        <p>{ flag ? "愤怒" : "愉快"}</p>
+                        <button onClick={this.change}>切换</button>
+                    </div>
+                )
+            }
+        
+            //事件函数如果是一个普通函数的话，this指向要看这个函数是怎么调用的
+            //如果事件函数是一个箭头函数，那么this的指向就不必看事件函数是怎么调用的，而是去外层寻找this的变量
+            //在class语法中this指向实例对象，所以箭头函数的this使用的是外边的this，指向组件实例
+            //根据语法 如果事件函数是一个箭头函数，则需要赋值给一个变量保存，则这个事件函数直接被设置在了组件实例上了
+            change = ()=>{
+                console.log("事件函数");
+                //我们希望this指向组件实例，这样就可以通过this.state获取状态
+                console.log(this);
+                console.log(this.state);
+            }
+        }
+
+
+
+        
+        ReactDOM.render(<App/>,document.getElementById('app'))
+    </script>
+</body>
+
+</html>

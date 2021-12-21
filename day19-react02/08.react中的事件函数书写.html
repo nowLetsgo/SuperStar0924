@@ -14,6 +14,13 @@
     <script type='text/babel'>
 
         class App extends React.Component{
+            constructor(){
+                super();
+                //constructor中的this指向组件实例
+                //可以在这里调用事件函数，并把事件函数的this指向组件实例，返回一个新的函数
+                this.changeTemp = this.change.bind(this);
+            }
+
             //我们在没有必要书写constructor的时候，可以省略，以下这种方式也是设置实例对象上的属性的
             state = {
                 mood:"愤怒",
@@ -33,17 +40,22 @@
                 return (
                     <div>
                         <p>{ flag ? "愤怒" : "愉快"}</p>
-                        <button onClick={fn}>切换</button>
+                        <button onClick={this.changeTemp}>切换</button>
                     </div>
                 )
+            }
+        
+            //事件函数书写在原型对象上
+            change(){
+                console.log("事件函数");
+                //我们希望this指向组件实例，这样就可以通过this.state获取状态
+                console.log(this);
+                console.log(this.state);
             }
         }
 
 
-        //定义一个事件函数
-        function fn(){
-            console.log("我是事件函数");
-        }
+
         
         ReactDOM.render(<App/>,document.getElementById('app'))
     </script>

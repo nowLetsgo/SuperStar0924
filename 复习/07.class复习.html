@@ -11,7 +11,6 @@
 <body>
     <script>
         class Person {
-
             //构造器-实例化后自动调用（可以不写，默认添加一个空的constructor）
             //当想要在实例化传参的时候，需要用constructor去接收
             constructor(name) {
@@ -20,6 +19,7 @@
             }
             //直接设置给实例化对象，类似于在constructor中书写（this.age = 18）
             age = 18;
+
             //直接设置给实例化对象的
             //如果say是一个箭头函数，则没有自己的this，而是直接使用的是类中的this,类中的this指向实例化对象
             say = () => {
