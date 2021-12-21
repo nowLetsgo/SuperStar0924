@@ -31,15 +31,15 @@
                 )
             }
         
-            //事件函数如果是一个普通函数的话，this指向要看这个函数是怎么调用的
-            //如果事件函数是一个箭头函数，那么this的指向就不必看事件函数是怎么调用的，而是去外层寻找this的变量
-            //在class语法中this指向实例对象，所以箭头函数的this使用的是外边的this，指向组件实例
-            //根据语法 如果事件函数是一个箭头函数，则需要赋值给一个变量保存，则这个事件函数直接被设置在了组件实例上了
             change = ()=>{
-                console.log("事件函数");
-                //我们希望this指向组件实例，这样就可以通过this.state获取状态
-                console.log(this);
+                //修改state状态的值
                 console.log(this.state);
+                //请不要直接通过this.state修改state的内容
+                // this.state.flag = true;
+
+                const {flag} = this.state;
+                //请通过组件实例的setState方法来修改state状态值,参数是一个对象，会把这个对象合并在state对象上
+                this.setState({hello:"world",flag:!flag})
             }
         }
 

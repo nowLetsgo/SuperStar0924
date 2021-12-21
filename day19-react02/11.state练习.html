@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+
+        class App extends React.Component{
+            //设置state初始值
+            state = {
+                count:0
+            }
+
+            render(){
+                const {count} = this.state;
+                return (
+                    <div>
+                        <h3>{count}</h3>
+                        <button onClick={this.add}>累加</button>
+                    </div>
+                )
+            }
+
+            add = ()=>{
+                let {count} = this.state;
+
+                this.setState({count:++count})
+            }
+            
+        }
+
+
+        ReactDOM.render(<App/>,document.getElementById('app'))
+    </script>
+</body>
+
+</html>

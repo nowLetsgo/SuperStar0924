@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app1'></div>
+    <div id='app2'></div>
+    <script type='text/babel'>
+        class Myself extends React.Component{
+            render(){
+                //打印组件实例
+                console.log(this);
+                //请不要修改props，props是只读的，也就是不能直接this.props.XXX=XXX;
+
+                //如果真想修改，可以把props设置在state上，然后我们可以修改并使用state的值,也可以解构赋值之后，修改变量的值就可
+                // this.props.name = "xiaonienie"
+
+
+                //通过this.props可以拿到组件被调用时传递的属性
+                const {name,age,sex} = this.props;
+                return (
+                    <ul>
+                        <li>{name.toLowerCase()}</li>
+                        <li>{age}</li>
+                        <li>{sex}</li>
+                    </ul>
+                )
+            }
+        }
+    
+        ReactDOM.render(<Myself name="LaoYang" sex="男" age="18"/>,document.getElementById('app1'))
+        ReactDOM.render(<Myself  name="LaoNie" sex="女" age="28"/>,document.getElementById('app2'))
+    </script>
+</body>
+
+</html>
