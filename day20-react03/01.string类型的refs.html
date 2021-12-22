@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        /* 
+            字符串类型的refs：
+                1.在被获取的虚拟DOM上设置一个ref属性，值为一个字符串
+                2.在组件实例的refs对象上就有了一个key为这个字符串，值就是这个字符串所在的DOM
+                3.将来通过this.refs.字符串 可以得到对应的元素
+        */
+        class App extends React.Component{
+            render(){
+                return (
+                    <div>
+                        <input type="text" ref="inputEle" />
+                        <button onClick={this.showMsg}>获取前边表单的内容</button>
+                    </div>
+                )
+            }
+
+            showMsg = () => {
+                console.log(this.refs.inputEle);
+                const {value} = this.refs.inputEle;
+
+                console.log(value);
+            }
+        }
+        ReactDOM.render(<App/>,document.getElementById('app'))
+    </script>
+</body>
+
+</html>

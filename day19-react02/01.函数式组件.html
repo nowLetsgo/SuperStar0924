@@ -15,6 +15,7 @@
         //定义一个函数式组件（无状态组件 简单组件）
         function Hello(){
             const con = "hello"
+            console.log(this);//undefined
             //组件最基本的事情是应该定义一个虚拟DOM
             return (
                 <div>
@@ -34,7 +35,7 @@
                 1.先判断这个Hello组件是否存在
                     - 如果存在，则去找到当前组件
                     - 如果不存在，则报错 Hello is not defined
-                2.找到组件以后，去调用当前的组件函数，这个组件函数会返回一个虚拟DOM，然后交给render方法进行渲染
+                2.找到组件以后，让当前的组件函数进行默认调用，这个组件函数会返回一个虚拟DOM，然后交给render方法进行渲染
         
         */
         
