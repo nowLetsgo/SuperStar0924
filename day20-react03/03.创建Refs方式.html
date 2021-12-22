@@ -13,16 +13,22 @@
     <div id='app'></div>
     <script type='text/babel'>
         /* 
-            字符串类型的refs：
-                1.在被获取的虚拟DOM上设置一个ref属性，值为一个字符串
-                2.在组件实例的refs对象上就有了一个key为这个字符串，值就是这个字符串所在的DOM
-                3.将来通过this.refs.字符串 可以得到对应的元素
+            创建refs：
+                1. 使用React.createRef()创建一个'容器'，用一个组件实例上的属性保存这个'容器'
+                2. 在被获取的DOM上设置ref属性，值为这个'容器'。那么就会把当前元素挡在这个'容器'中了
+                3. 通过this获取到这个容器对象，this.容器中有一个current属性，保存的是当前的节点
+                4. 一个容器只能保存一个元素，需要多个元素则需要多个容器
         */
         class App extends React.Component{
+            //创建一个ref'容器'
+            inputEle = React.createRef();
+            divEle = React.createRef();
+
             render(){
                 return (
                     <div>
-                        <input type="text" ref="inputEle" />
+                        <div ref={this.divEle}>hello</div>
+                        <input type="text" ref={this.inputEle} />
                         <button onClick={this.showMsg}>获取前边表单的内容</button>
                     </div>
                 )
@@ -30,13 +36,14 @@
 
             showMsg = () => {
                 console.log(this);
-                console.log(this.refs.inputEle);
-                const {value} = this.refs.inputEle;
-
+                const {value} = this.inputEle.current;
                 console.log(value);
             }
         }
         ReactDOM.render(<App/>,document.getElementById('app'))
+
+
+     
     </script>
 </body>
 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        /* 
+            回调类型的refs：
+                - 在ref属性上赋值一个回调函数
+                - 当虚拟DOM在渲染的时候，会自动的执行这个ref属性上的回调函数
+                - ref的回调函数接受一个参数，这个参数就是当前的元素
+                - 回调函数是默认调用的，this指向undefined，所以把回调函数写成箭头函数的形式
+                - 在回调函数中给组件实例扩展一个inputEle属性，值是当前的元素（回调函数的参数）
+                - 将来在任意位置可以使用  this.inputEle 获取当前元素
+        */
+        class App extends React.Component{
+            render(){
+                return (
+                    <div>
+                        {/* <input type="text" ref={(function(c){console.log(this)}).bind(this)} /> */}
+                        <input type="text" ref={c => {this.inputEle = c}} />
+                        <button onClick={this.showMsg}>获取前边表单的内容</button>
+                    </div>
+                )
+            }
+
+            showMsg = () => {
+                console.log(this);
+                console.log(this.inputEle);
+                const {value} = this.inputEle;
+                console.log(value);
+            }
+        }
+        ReactDOM.render(<App/>,document.getElementById('app'))
+
+
+     
+    </script>
+</body>
+
+</html>
