@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        /* 
+            组件出生到卸载的过程：
+        
+        
+        */
+        class App extends React.Component{
+            //构造器
+            constructor(){
+                super()
+                console.log("----constructor----");
+            }
+            state = {
+                count:0
+            }
+
+            //组件即将挂载（新版本删除，不推荐使用）
+            componentWillMount(){
+                console.log("----componentWillMount");
+            }
+
+            //组件渲染
+            render(){
+                console.log("----render-----");
+                const {count} = this.state
+                return (
+                    <div>
+                        <h1>{count}</h1>
+                        <button onClick={this.add}>累加更新</button>
+                        <button onClick={this.forceAdd}>强制更新</button>
+                        <button onClick={this.unMount}>卸载</button>
+                    </div>
+                )
+            }
+
+            //组件挂载完毕
+            componentDidMount(){
+                console.log("----componentDidMount----");
+            }
+
+            //一个阀门：控制组件是否可以进行更新（可以更新state状态，但是阻止state改变以后让组件重新渲染）
+            shouldComponentUpdate(){
+                //根据一些判断条件控制返回值，返回一个布尔值，确实阀门是否打开
+                return false
+            }
+
+            //组件即将更新（React官方已经放弃，不建议使用）
+            componentWillUpdate(){
+                console.log("----componentWillUpdate----");
+            }
+
+            //组件已经更新
+            componentDidUpdate(){
+                console.log("----componentDidUpdate----");
+            }
+
+            //组件即将卸载
+            componentWillUnmount(){
+                console.log("----componentWillUnmount----");
+            }
+
+
+            unMount = () => {
+                ReactDOM.unmountComponentAtNode(document.getElementById('app'))
+            }
+
+            add = () => {
+                let {count} = this.state;
+                this.setState({count:count + 1})
+            }
+
+            forceAdd = () => {
+                //强制更新：把state状态的值更新到组件中（避免state和组件中渲染的不一致）
+                //强制更新不走阀门
+                this.forceUpdate()
+            }
+        }
+        ReactDOM.render(<App/>,document.getElementById('app'))
+    </script>
+</body>
+
+</html>

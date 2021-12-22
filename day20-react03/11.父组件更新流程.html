@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        class Parent extends React.Component{
+            state = {
+                car:"劳斯莱斯"
+            }
+            render(){
+                const {car} = this.state;
+                return (
+                    <div>
+                        <h1>我开的车是{car}</h1>  
+                        <button onClick={this.changeCar}>我换车了</button> 
+                        <Son car={car}/> 
+                    </div>
+                )
+            }
+
+            changeCar = () => {
+                this.setState({car:"八手奥拓"})
+            }
+        }
+        class Son extends React.Component{
+            render(){
+                console.log("----render----");
+                const {car} = this.props;
+                return (
+                    <div>
+                        <h2>我开的是我爸的车 {car}</h2>    
+                    </div>
+                )
+            }
+
+            //即将接受父组件的传值（初始化的时候不会调用，以后重新传值的时候会触发）
+            //过时的生命周期函数（新版本不推荐使用）
+            componentWillReceiveProps(){
+                console.log("----componentWillReceiveProps----");
+            }
+
+            shouldComponentUpdate(){
+                console.log("----shouldComponentUpdate----");
+                return true;
+            }
+            componentWillUpdate(){
+                console.log("----componentWillUpdate----");
+            }
+            componentDidUpdate(){
+                console.log("----componentDidUpdate----");
+            }
+        }
+
+        
+        ReactDOM.render(<Parent/>,document.getElementById('app'))
+    </script>
+</body>
+
+</html>
