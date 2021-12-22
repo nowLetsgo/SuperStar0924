@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        /* 
+            <input>或<select>都要绑定一个change事件;每当表单的状态发生变化,都会被写入组件的state中,这种组件在React中被称为受控组件
+
+        */
+        class App extends React.Component{
+            state = {
+                username:"laoli",
+                password:""
+            }
+
+            render(){
+                const {username,password} = this.state;
+                return (
+                    <div>
+                        <label>
+                            用户名：
+                            <input 
+                                type="text" 
+                                defaultValue={username}
+                                value={username}
+                                onChange={this.changeUser}
+                            />
+                        </label>
+                        <label>
+                            密码
+                            <input 
+                                type="password" 
+                                defaultValue={password}
+                                value={password}
+                                onChange={this.changePass}
+                            />
+                        </label>
+                        <button onClick={this.submit}>提交</button>
+                        <button onClick={this.import}>一键导入</button>
+                    </div>
+                )
+            }
+
+            changeUser = (e) => {
+                const {value} = e.target;
+                this.setState({username:value})
+            }
+
+            changePass = (e) => {
+                const {value} = e.target;
+                this.setState({password:value})
+            }
+
+            submit = () => {
+                const {username,password} = this.state;
+                console.log("username:",username);
+                console.log("password:",password);
+            }
+
+            import = () => {
+                //被一键导入的数据
+                const data = {
+                    username:"xiaoyang",
+                    password:"888888"
+                }
+
+                const {username,password} = data;
+
+                this.setState({username,password})
+            }
+
+        }
+        ReactDOM.render(<App/>,document.getElementById('app'))
+    </script>
+</body>
+
+</html>

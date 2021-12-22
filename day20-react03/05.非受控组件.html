@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        /* 
+            非受控组件: 组件中输入类DOM的值，在使用时：是通过节点获取输入的，而不是从state中读取的。（现用现找节点取）
+            表单设置value属性：
+                - 如果直接设置value属性，需要你把当前的表单设置为readOnly 或者 在表单上设置一个onChange事件
+                - 如果想要仅仅设置默认value 请使用 defaultValue属性来设置
+                - 选项框也是同理，defaultChecked可以设置默认选中
+                - 因为value或者checked在react中一直保持作用，所以如果不需要onChange事件监听的话，可能修改不了这个值，而defaultChecked和defaultValue只是在初始渲染的时候生效
+
+        */
+        class App extends React.Component{
+            render(){
+                return (
+                    <div>
+                        <label>
+                            用户名：
+                            <input 
+                                type="text" 
+                                ref={c => this.userEle = c} 
+                                defaultValue="laoli"
+                            />
+                        </label>
+                        <label>
+                            密码
+                            <input type="password" ref={c => this.passEle = c}/>
+                        </label>
+                        <input type="checkbox" defaultChecked/>
+                        <button onClick={this.submit}>提交</button>
+                    </div>
+                )
+            }
+
+            submit = () => {
+                const userValue = this.userEle.value;
+                const passValue = this.passEle.value;
+
+                console.log("user:",userValue,"pass:",passValue);
+            }
+        }
+        ReactDOM.render(<App/>,document.getElementById('app'))
+    </script>
+</body>
+
+</html>
