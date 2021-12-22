@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        class App extends React.Component{
+            
+            state = {
+                opacity:1
+            }
+            
+            render(){
+                //render执行的次数 1+n 次，所以初始化设置计时器的时候，计时器不适合写在这里，因为会无限的添加新的计时器，而计时器只需要设置1次即可
+                
+                const {opacity} = this.state;
+                return (
+                    <div>
+                        <h2 style={{opacity}}>React 太难了，学不会怎么办</h2>
+                        <button onClick={this.giveUp}>从入门到放弃</button>    
+                    </div>
+                )
+            }
+
+
+            //组件挂载完成的钩子函数，当组件一旦挂载完成就会执行当前的函数，只执行一次
+            componentDidMount(){
+                let {opacity} = this.state;
+                this.opacityTimer = setInterval(()=>{
+                    opacity -= 0.1;
+                    if(opacity <= 0){
+                        opacity = 1;
+                    }
+                    this.setState({opacity})
+                },100)
+            }
+
+            //组件即将卸载的钩子函数，一旦组件执行了卸载的命令后，就会立马来执行当前钩子函数，只能执行一次
+            componentWillUnmount(){
+                clearInterval(this.opacityTimer)
+            }
+
+
+            giveUp = () => {
+                //卸载掉当前组件 ReactDOM上有一个unmountComponentAtNode(node)
+                ReactDOM.unmountComponentAtNode(document.getElementById('app'))
+            }
+        }
+        ReactDOM.render(<App/>,document.getElementById('app'))
+    </script>
+</body>
+
+</html>
