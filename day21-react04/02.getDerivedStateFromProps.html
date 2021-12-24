@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        class User extends React.Component{
+            state={
+                price:990,
+                name:"laowang"
+            }
+            render(){
+                const {price} = this.state
+                return (
+                    <div>
+                        用户的总钱数是：
+                        {price}    
+                    </div>
+                )
+            }
+
+            static getDerivedStateFromProps(props,state){
+                //getDerivedStateFromProps接受两个参数：props和state
+                // console.log(props,state);
+                const {price} = state;
+                const {num} = props;
+                // console.log("getDerivedStateFromProps");
+                if(price + +num>=1000){
+                    return {
+                        price:0
+                    }
+                }
+
+                return {
+                    price:price + +num
+                };
+            }
+        }
+
+
+        class Con extends React.Component{
+            state = {
+                num:1
+            }
+
+            render(){
+                const {num} = this.state
+                return (
+                    <div>
+                        <input type="number" onChange={this.changeNum} value={num}/>
+                        <User num={num}/>
+                    </div>
+                    
+                )
+            }
+
+            changeNum = (e) => {
+                this.setState({num:e.target.value})
+            }
+        }
+        ReactDOM.render(<Con/>,document.getElementById('app'))
+    </script>
+</body>
+
+</html>
