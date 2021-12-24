@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+
+        class App extends React.Component{
+            state = {
+                name:"老王"
+            }
+            UNSAFE_componentWillMount(){
+                console.log("componentWillMount");
+            }
+            render(){
+                console.log("render");
+                const {name} = this.state;
+                return (
+                    <div>
+                        <h1>{name}</h1>
+                        <button onClick={this.changeName}>更新</button>
+                    </div>
+                )
+            }
+
+            //阀门：作为性能优化，如果props或者state没有发生改变的时候，可以不用渲染
+            shouldComponentUpdate(nextProps,nextState){
+                console.log(nextState);
+                if(nextState.name===this.state.name){
+                    return false;
+                }
+                return true;
+            }
+
+            componentDidMount(){
+                console.log("componentDidMount");
+            }
+            
+            UNSAFE_componentWillUpdate(){
+                console.log("componentWillUpdate");
+            }
+
+            componentDidUpdate(){
+                console.log("componentDidUpdate");
+            }
+
+            changeName = () => {
+                this.setState({name:"老杨"})
+            }
+        }
+        ReactDOM.render(<App/>,document.getElementById('app'))
+        
+    </script>
+</body>
+
+</html>

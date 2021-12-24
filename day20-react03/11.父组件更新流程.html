@@ -48,7 +48,8 @@
                 console.log("----componentWillReceiveProps----");
             }
 
-            shouldComponentUpdate(){
+            shouldComponentUpdate(_,__,___){
+                console.log("______",_,__,___);
                 console.log("----shouldComponentUpdate----");
                 return true;
             }
