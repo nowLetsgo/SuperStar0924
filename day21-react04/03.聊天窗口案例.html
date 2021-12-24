@@ -41,7 +41,7 @@
                 const {news} = this.state;
                 return (
                     <div>
-                        <ul className="outer">
+                        <ul className="outer" ref={c => this.outerEle = c}>
                             {
                                 news.map((item,index)=>{
                                     return <li key={index}>{item}</li>
@@ -68,6 +68,25 @@
                     // news.unshift(con)
                     // this.setState({news})
                 },500)
+            }
+
+            //快照：在组件更新后render方法执行后，但是真正DOM渲染前执行
+            getSnapshotBeforeUpdate(){
+                console.log("getSnapshotBeforeUpdate");
+
+                //返回值就是 拍的快照（记录更新前的一些信息）
+                //拍一下就的元素内容总高度
+                return this.outerEle.scrollHeight
+            }
+            
+            componentDidUpdate(_,__,snapshot){
+                // componentDidUpdate接受三个参数：props、state、快照
+                //新的新闻的高度:在渲染前获取旧的总高度 减去 渲染后新的总高度
+                const diff = this.outerEle.scrollHeight - snapshot;
+                //获取ul的滚动条的距离，每次更新的时候累加 新的新闻的高度（在渲染前获取旧的总高度 减去 渲染后新的总高度）
+                const nowScr = this.outerEle.scrollTop;
+                
+                this.outerEle.scrollTop = nowScr + diff;
             }
         }
         ReactDOM.render(<App/>,document.getElementById('app'))
