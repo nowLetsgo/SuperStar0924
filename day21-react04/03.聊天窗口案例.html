@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .outer {
+            width: 200px;
+            height: 200px;
+            background-color: yellowgreen;
+            border: 1px solid #000;
+            overflow: auto;
+        }
+
+        .outer li {
+            height: 40px;
+            font-size: 20px;
+            background-color: violet;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        class App extends React.Component{
+            state={
+                news:[]
+            }
+            render(){
+                const {news} = this.state;
+                return (
+                    <div>
+                        <ul className="outer">
+                            {
+                                news.map((item,index)=>{
+                                    return <li key={index}>{item}</li>
+                                })
+                            }
+                        </ul>    
+                    </div>
+                )
+            }
+
+            componentDidMount(){
+                let count = 0;
+                setInterval(()=>{
+                    //获取当前state中的news
+                    const {news} = this.state;
+                    count++;
+                    //得到当前的新闻标题
+                    const con = "新闻"+count;
+
+                    //把新的标题设置在state的news中
+                    this.setState({news:[con,...news]})
+
+                    //以下这种设置方式，仍然是直接修改了state中的值
+                    // news.unshift(con)
+                    // this.setState({news})
+                },500)
+            }
+        }
+        ReactDOM.render(<App/>,document.getElementById('app'))
+    </script>
+</body>
+
+</html>
