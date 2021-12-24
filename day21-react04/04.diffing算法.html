@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='./js/react.development.js'></script>
+    <script src='./js/react-dom.development.js'></script>
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        /* 
+            //下标作为唯一的key
+            //key的作用是在diffing算法中一一对应
+            //每次更新的时候先检测key是否相等，然后再检测key中的内容是否一致，如果不一致，则重新渲染该虚拟DOM
+            //diffing算法比较的过程中，虚拟DOM内部也会进行差异比较，如果一致的元素会保留下来
+            更新前的虚拟DOM
+                <li key=0>成成-16 <input type="text"/></li>
+                <li key=1>浩浩-17 <input type="text"/></li>
+                <li key=2>嘻嘻-18 <input type="text"/></li>
+
+            更新后的虚拟DOM
+        
+                <li key=0>聂聂-20 <input type="text"/></li>
+                <li key=1>成成-16 <input type="text"/></li>
+                <li key=2>浩浩-17 <input type="text"/></li>
+                <li key=3>嘻嘻-18 <input type="text"/></li>
+
+
+            更新前的虚拟DOM
+                <li key=001>成成-16 <input type="text"/></li>
+                <li key=002>浩浩-17 <input type="text"/></li>
+                <li key=003>嘻嘻-18 <input type="text"/></li>
+
+            更新后的虚拟DOM
+        
+                <li key=004>聂聂-20 <input type="text"/></li>
+                <li key=001>成成-16 <input type="text"/></li>
+                <li key=002>浩浩-17 <input type="text"/></li>
+                <li key=003>嘻嘻-18 <input type="text"/></li>
+        
+        
+        */
+        class App extends React.Component{
+            state = {
+                persons:[
+                    {id:"001",name:"成成",age:16},
+                    {id:"002",name:"浩浩",age:17},
+                    {id:"003",name:"嘻嘻",age:18},
+                ]
+            }
+            render(){
+                const {persons} = this.state;
+                return (
+                    <div>
+                        <button onClick={this.add}>新增一个人</button>
+                        <ul>
+                            {
+                                persons.map((item,index)=>{
+                                    return <li key={item.id}>{item.name}---{item.age} <input type="text"/></li>
+                                })
+                            }    
+                        </ul>    
+                    </div>
+                )
+            }
+
+            add = () => {
+                const {persons} = this.state;
+                const newPerson = {
+                    name:"聂聂",
+                    age:20,
+                    id:Date.now()
+                }
+
+                this.setState({persons:[newPerson,...persons]})
+            }
+            
+        }
+        ReactDOM.render(<App/>,document.getElementById('app'))
+    </script>
+</body>
+
+</html>
