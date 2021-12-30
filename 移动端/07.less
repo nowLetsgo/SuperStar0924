@@ -1,0 +1,46 @@
+@picW: 640;
+@scale: 10rem;
+@font: 640 / 10rem;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    height: 100 / @font;
+    background-color: khaki;
+}
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.nav>div {
+    width: 310 / @font;
+    height: 100 / @font;
+    background-color: lavender;
+}
+
+.list {
+    background-color: #ccc;
+}
+
+.list>li {
+    margin-bottom: 10 / @font;
+    display: flex;
+}
+
+.list>li>.left {
+    width: 200 / @font;
+    height: 150 / @font;
+    background-color: lightblue;
+}
+
+.list>li>.right {
+    width: 440 / @font;
+    height: 150 / @font;
+    background-color: pink;
+}

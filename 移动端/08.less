@@ -1,0 +1,47 @@
+.style(@s, @num) {
+    @{s}: @num / 640 * 10rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    .style(height, 100);
+    background-color: khaki;
+}
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.nav>div {
+    .style(width, 310);
+    .style(height, 100);
+    background-color: lavender;
+}
+
+.list {
+    background-color: #ccc;
+}
+
+.list>li {
+    .style(margin-bottom, 10);
+
+    display: flex;
+}
+
+.list>li>.left {
+    .style(width, 200);
+    .style(height, 150);
+    background-color: lightblue;
+}
+
+.list>li>.right {
+    .style(width, 440);
+    .style(height, 150);
+    background-color: pink;
+}

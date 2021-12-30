@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.header {
+  height: 1.5625rem;
+  background-color: khaki;
+}
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.nav > div {
+  width: 4.84375rem;
+  height: 1.5625rem;
+  background-color: lavender;
+}
+.list {
+  background-color: #ccc;
+}
+.list > li {
+  margin-bottom: 0.15625rem;
+  display: flex;
+}
+.list > li > .left {
+  width: 3.125rem;
+  height: 2.34375rem;
+  background-color: lightblue;
+}
+.list > li > .right {
+  width: 6.875rem;
+  height: 2.34375rem;
+  background-color: pink;
+}

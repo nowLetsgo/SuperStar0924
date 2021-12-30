@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+        const oBox = document.querySelector('.box');
+        oBox.ontouchstart = function () {
+            oBox.innerHTML += "手指头按下"
+        }
+        oBox.ontouchmove = function () {
+            oBox.innerHTML += "手指头滑动"
+        }
+        oBox.ontouchend = function () {
+            oBox.innerHTML += "手指头离开"
+        }
+    </script>
+</body>
+
+</html>
