@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            /* 假设手机的宽度是375px,则设置根元素的字号大小是375，以后1rem就代表375 */
+            /* font-size: 37.5px; */
+        }
+
+        header {
+            width: 1rem;
+            height: 50px;
+            background-color: red;
+        }
+
+        /* 已知：设计图宽度是320 */
+        .con1 {
+            /* 测量得知，一个元素的宽度是160px ，我们根据比例得到应该是多少rem*/
+            width: calc(160 / 320 * 10rem);
+            height: calc(100 / 320 * 10rem);
+            background-color: khaki;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <header></header>
+        <div class="con1"></div>
+    </div>
+    <script>
+        //获取视口的宽度
+        const wW = document.documentElement.clientWidth;
+        //把这个宽度设置给根元素的字号大小上
+        document.documentElement.style.fontSize = wW / 10 + "px";
+    </script>
+</body>
+
+</html>

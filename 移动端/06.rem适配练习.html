@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./rem1.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            height: calc(100 / 640 * 10rem);
+            background-color: khaki;
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .nav>div {
+            width: calc(310 / 640 * 10rem);
+            height: calc(100 / 640 * 10rem);
+            background-color: lavender;
+        }
+
+        .list {
+            background-color: #ccc;
+        }
+
+        .list>li {
+            margin-bottom: calc(10 / 640 * 10rem);
+            display: flex;
+        }
+
+        .list>li>.left {
+            width: calc(200 / 640 * 10rem);
+            height: calc(150 / 640 * 10rem);
+            background-color: lightblue;
+        }
+
+        .list>li>.right {
+            width: calc(440 / 640 * 10rem);
+            height: calc(150 / 640 * 10rem);
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <header class="header"></header>
+        <nav class="nav">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </nav>
+        <ul class="list">
+            <li>
+                <div class="left"></div>
+                <div class="right"></div>
+            </li>
+            <li>
+                <div class="left"></div>
+                <div class="right"></div>
+            </li>
+            <li>
+                <div class="left"></div>
+                <div class="right"></div>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
